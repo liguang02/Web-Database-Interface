@@ -1,4 +1,4 @@
-CREATE TABLE `fit2104_a2`.`students` 
+CREATE TABLE `fit2104_a2`.`STUDENTS`
 (
     `id` INT NOT NULL AUTO_INCREMENT, 
     `firstName` VARCHAR(64) NOT NULL, 
@@ -11,7 +11,7 @@ CREATE TABLE `fit2104_a2`.`students`
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
-CREATE TABLE `fit2104_a2`.`tailored_class`
+CREATE TABLE `fit2104_a2`.`TAILORED_CLASS`
 (
     `id` INT NOT NULL AUTO_INCREMENT,
     `summary` VARCHAR(255) NOT NULL,
@@ -23,5 +23,49 @@ CREATE TABLE `fit2104_a2`.`tailored_class`
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
-ALTER TABLE `tailored_class` ADD FOREIGN KEY (`student_id`) REFERENCES `students`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `TAILORED_CLASS` ADD FOREIGN KEY (`student_id`) REFERENCES `STUDENTS`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
+CREATE TABLE `fit2104_a2`.`COURSE`
+(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(64) NOT NULL,
+    `price` INT NOT NULL,
+    `category_id` INT NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+CREATE TABLE `fit2104_a2`.`COURSE_IMAGE`
+(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `course_id` INT NOT NULL,
+    `filePath` VARCHAR(64) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+CREATE TABLE `fit2104_a2`.`CATEGORY`
+(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(64) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+ALTER TABLE `COURSE` ADD FOREIGN KEY (`category_id`) REFERENCES `CATEGORY`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `COURSE_IMAGE` ADD FOREIGN KEY (`course_id`) REFERENCES `COURSE`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+CREATE TABLE `fit2104_a2`.`USERS`
+(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `firstName` VARCHAR(64) NOT NULL,
+    `surname` VARCHAR(64) NOT NULL,
+    `email` VARCHAR(255) NOT NULL,
+    `username` VARCHAR(64) NOT NULL,
+    `password` VARCHAR(64) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+ALTER TABLE `USERS`
+    ADD UNIQUE KEY `email` (`email`),
+    ADD UNIQUE KEY `username` (`username`);
+
+INSERT INTO `USERS` (`firstName`, `surname`, `email`, `username`, `password`) VALUES
+('Dane', 'Oldman', 'dane.oldman@gmail.com', 'daneo', SHA2('daneo', 256));
