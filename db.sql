@@ -70,7 +70,7 @@ ALTER TABLE `USERS`
     ADD UNIQUE KEY `username` (`username`);
 
 INSERT INTO `USERS` (`firstName`, `surname`, `email`, `username`, `password`) VALUES
-('Dane', 'Oldman', 'dane.oldman@gmail.com', 'daneo', SHA2('daneo', 256));
+    ('Dane', 'Oldman', 'dane.oldman@gmail.com', 'daneo', SHA2('daneo', 256));
 
 INSERT INTO `STUDENTS` (`firstName`,`surname`,`address`,`phone`,`dob`,`email`,`subscribe`)
 VALUES
@@ -99,3 +99,11 @@ VALUES
     ("Sydney","Gallegos","P.O. Box 965, 4254 Sit Avenue","(06) 8101 6531","2004-09-03","fusce.mollis@protonmail.edu",false),
     ("Boris","Cotton","350-8502 Justo. St.","(03) 1283 6214","2016-07-09","ipsum.suspendisse@outlook.com",false),
     ("Penelope","Alvarez","P.O. Box 882, 300 Egestas Street","(06) 4575 4802","2007-06-17","magna.phasellus.dolor@icloud.ca",false);
+
+INSERT INTO `CATEGORY` (`name`) VALUES
+    ("Beginner"),
+    ("Intermediate");
+
+INSERT INTO `COURSE` (`name`, `price`, `category_id`) VALUES
+    ("Guitar",120,1),
+    ("Violin",110,2);

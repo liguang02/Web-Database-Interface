@@ -1,3 +1,4 @@
-<html>
-<h1>DASHBOARD</h1>
-</html>
+<?php
+include('index.html');
+?>
+
