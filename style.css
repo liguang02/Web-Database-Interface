@@ -1,0 +1,27 @@
+.center {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.aligned-form {
+    display: table;
+}
+
+.aligned-form div.row {
+    display: table-row;
+}
+
+.aligned-form label,
+.aligned-form input {
+    display: table-cell;
+}
+
+.aligned-form label {
+    padding: 0.5em 1em 0.5em 0;
+    text-align: right;
+}
+
+.row {
+    padding-top: 1em;
+    padding-bottom: 1em;
+}

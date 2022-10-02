@@ -8,6 +8,10 @@ include('index.html');
 ?>
 
 <h1>STUDENT LIST</h1>
+<div class = "center row">
+    <a href="student_add.php">Add new student record</a>
+
+</div>
 <div>
     <?php if ($students->execute() && $students->rowCount() > 0) { ?>
         <table>
@@ -21,6 +25,7 @@ include('index.html');
                 <th>Date of Birth</th>
                 <th>Email</th>
                 <th>hasSubscribed</th>
+                <th>Action</th>
 
             </tr>
             </thead>
@@ -35,13 +40,17 @@ include('index.html');
                     <td class="table-cell-left"><?= $student->dob ?></td>
                     <td class="table-cell-left"><?= $student->email ?></td>
                     <?php
-                    if ($student->subscribe == 1) {
+                    if ($student->subscribe) {
                         $subscribed = "Yes";
                     }else{
                         $subscribed = "No";
                     }
                     ?>
                     <td class="table-cell-left"><?= $subscribed?></td>
+                    <td>
+                        <a href="student_edit.php? id=<?=$student->id?>">Update</a>
+                        <a href="student_delete.php? id=<?=$student->id?>">Delete</a>
+                    </td>
                 </tr>
             <?php } ?>
             </tbody>
