@@ -110,40 +110,56 @@ include('index.html');
 <div>
     <?php if (!empty($_GET['error'])) { ?>
         <p class="error"><?= $_GET['error'] ?></p>
-    <?php } ?>
-
-    <form method="post" enctype="multipart/form-data">
-        <div>
-            <label for="name">New Name: </label>
-            <input type="text" id="name" name="name" maxlength="64" required/>
-        </div>
-        <div>
-            <label for="price">New Price: </label>
-            <input type="number" id="price" name="price" min="0" max="999999999" required/>
-        </div>
-        <div>
-            <label for="category">New Category: </label>
-            <select id="category" name="category">
-                <?php
-                $categories = $dbh->prepare("SELECT * FROM `CATEGORY`");
-                $categories->execute();
-                while ($cat = $categories->fetchObject()) {
-                    ?>
-                    <option value="<?= $cat->id ?>"><?= $cat->name ?></option>
-                <?php } ?>
-            </select>
-        </div>
-        <div>
-            <label for="image">Add More Images: </label>
-            <input type="file" id="image" name="image[]" onchange="image_checker(event)" multiple="multiple"/>
-        </div>
-        <div>
-            <input type="submit" value="Update"/>
-        </div>
-        <div>
-            <a href="courses.php">Cancel and back to list</a>
-        </div>
-    </form>
+    <?php }
+    $stmt = $dbh->prepare("SELECT * FROM `course` WHERE `id`=?");
+    if ($stmt->execute([$_GET['id']])) {
+        if ($stmt->rowCount() > 0) {
+            $initial = $stmt->fetchObject(); ?>
+            <form method="post" enctype="multipart/form-data">
+                <div>
+                    <label for="name">New Name: </label>
+                    <input type="text" id="name" name="name" maxlength="64" required value="<?= $initial->name ?>"/>
+                </div>
+                <div>
+                    <label for="price">New Price: </label>
+                    <input type="number" id="price" name="price" min="0" max="999999999" required value="<?= $initial->price ?>"/>
+                </div>
+                <div>
+                    <label for="category">New Category: </label>
+                    <select id="category" name="category">
+                        <?php
+                        $categories = $dbh->prepare("SELECT * FROM `CATEGORY`");
+                        $categories->execute();
+                        while ($cat = $categories->fetchObject()) {
+                            if ($cat->id == $initial->category_id ) {
+                            ?>
+                                <option value="<?= $cat->id ?>" selected ><?= $cat->name ?></option>
+                            <?php } else { ?>
+                            <option value="<?= $cat->id ?>"><?= $cat->name ?></option>
+                        <?php }
+                        } ?>
+                    </select>
+                </div>
+                <div>
+                    <label for="image">Add More Images: </label>
+                    <input type="file" id="image" name="image[]" onchange="image_checker(event)" multiple="multiple"/>
+                </div>
+                <div>
+                    <input type="submit" value="Update"/>
+                </div>
+                <div>
+                    <a href="courses.php">Cancel and back to list</a>
+                </div>
+            </form>
+        <?php } else {
+            header("Location: courses.php");
+        }
+    } else {
+        $dbh->rollback();  // In case of error, rollback everything
+        header("Location: course_edit.php?" . $_SERVER['QUERY_STRING'] . "&error=" . urlencode('The course cannot be updated. Please try again!'));
+        exit();
+    }
+    ?>
 </div>
 <script>
     // A callback function as event listener in input attribute (so we can do some validation)
