@@ -49,7 +49,7 @@ include("common.php");
             'phone' => $_POST['phone'],
             'dob' => $_POST['dob'],
             'email' => $_POST['email'],
-            'subscribe' => $_POST['subscribe'],
+            'subscribe' => (int)$_POST['subscribe'],
         ];
 
         if ($stmt->execute($parameters)) {
@@ -164,11 +164,11 @@ include("common.php");
                 </div>
                 <div class="row">
                     <label for="subscribe">Subscribed?</label>
-<!--                    <select name="subscribe" id="subscribe">-->
-<!--                        <option value=1>Yes</option>-->
-<!--                        <option value=0>No</option>-->
-<!--                    </select>-->
-                    <input type="number" id="subscribe" name="subscribe" min="0" max="1">
+                    <select name="subscribe" id="subscribe">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+<!--                    <input type="number" id="subscribe" name="subscribe" min="0" max="1">-->
                 </div>
             </div>
             <div class="row center">
