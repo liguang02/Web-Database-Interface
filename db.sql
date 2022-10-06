@@ -107,3 +107,8 @@ INSERT INTO `CATEGORY` (`name`) VALUES
 INSERT INTO `COURSE` (`name`, `price`, `category_id`) VALUES
     ("Guitar",120,1),
     ("Violin",110,2);
+
+INSERT INTO `TAILORED_CLASS` (`summary`,`start_date`,`end_date`,`quote`,`otherInfo`,`student_id`) VALUES
+    ("Extra class ", "2022-10-7", "2022-10-8", "100", "Extra class to explain the guitar theories", "3"),
+    ("Practice class", "2022-11-7", "2022-11-8", "120", "Violin practice", "2");
+
