@@ -26,7 +26,6 @@ include("common.php");
         // Check if any of the POST fields are empty (which shouldn't be!)
         foreach ($_POST as $fieldName => $fieldValue) {
             if (empty($fieldValue) && $fieldValue != 0) {
-                var_dump($_POST);
                 echo friendlyError("'$fieldName' field is empty. Please fix the issue try again. ");
                 echo '<div class="center row"><button onclick="window.history.back()">Back to previous page</button></div>';
                 die();
