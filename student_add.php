@@ -25,7 +25,8 @@ include("common.php");
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)):
         // Check if any of the POST fields are empty (which shouldn't be!)
         foreach ($_POST as $fieldName => $fieldValue) {
-            if (empty($fieldValue)) {
+            if (empty($fieldValue) && $fieldValue != 0) {
+                var_dump($_POST);
                 echo friendlyError("'$fieldName' field is empty. Please fix the issue try again. ");
                 echo '<div class="center row"><button onclick="window.history.back()">Back to previous page</button></div>';
                 die();
@@ -49,7 +50,7 @@ include("common.php");
             'phone' => $_POST['phone'],
             'dob' => $_POST['dob'],
             'email' => $_POST['email'],
-            'subscribe' => (int)$_POST['subscribe'],
+            'subscribe' => $_POST['subscribe'],
         ];
 
         if ($stmt->execute($parameters)) {
@@ -97,7 +98,7 @@ include("common.php");
                             <div class="row">
                                 <label for="subscribe">Subscribed?</label>
                                 <?php
-                                if ($record->subscribe==1) {
+                                if ($record->subscribe) {
                                     $subscribed = "Yes";
                                 }else{
                                     $subscribed = "No";
@@ -168,7 +169,6 @@ include("common.php");
                         <option value="1">Yes</option>
                         <option value="0">No</option>
                     </select>
-<!--                    <input type="number" id="subscribe" name="subscribe" min="0" max="1">-->
                 </div>
             </div>
             <div class="row center">

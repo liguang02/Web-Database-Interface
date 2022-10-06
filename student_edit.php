@@ -29,7 +29,7 @@ if (!isset($_GET['id'])) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
         // Check if any of the POST fields are empty (which shouldn't be!)
         foreach ($_POST as $fieldName => $fieldValue) {
-            if (empty($fieldValue)) {
+            if (empty($fieldValue) && $fieldValue != 0) {
                 echo friendlyError("'$fieldName' field is empty. Please fix the issue try again. ");
                 echo '<div class="center row"><button onclick="window.history.back()">Back to previous page</button></div>';
                 die();
@@ -102,11 +102,15 @@ if (!isset($_GET['id'])) {
                     </div>
                     <div class="row">
                         <label for="subscribe">Subscribed?</label>
-                        <!--                    <select name="subscribe" id="subscribe">-->
-                        <!--                        <option value=1>Yes</option>-->
-                        <!--                        <option value=0>No</option>-->
-                        <!--                    </select>-->
-                        <input type="number" id="subscribe" name="subscribe" min="0" max="1" value="<?= $record->subscribe?>">
+                            <select name="subscribe" id="subscribe">
+                                <?php if ($record->subscribe) {?>
+                                    <option value="1" selected>Yes</option>
+                                    <option value="0">No</option>
+                                <?php } else { ?>
+                                    <option value="1">Yes</option>
+                                    <option value="0" selected>No</option>
+                                <?php } ?>
+                            </select>
                     </div>
                     </div>
                     <div class="row center">
