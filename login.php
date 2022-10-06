@@ -18,10 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header("Location: " . $_GET['referer']);
             }
         } else {
+            session_destroy();
             header("Location: login.php?" . $_SERVER['QUERY_STRING'] . "&error=" . urlencode('Username and/or password is wrong. Please try again!'));
         }
         exit();
     } else {
+        session_destroy();
         header("Location: login.php?" . $_SERVER['QUERY_STRING'] . "&error=" . urlencode('Please enter both username and password to login!'));
         exit();
     }
