@@ -34,8 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'end_date' => $_POST['end_date'],
             'quote' => $_POST['quote'],
             'otherInfo' => $_POST['otherInfo'],
-            'student_id' => $_POST['student_id'],
-
+            'student_id' => $_POST['student_id']
         ])) {
             $dbh->rollback();  // In case of error, rollback everything
             header("Location: tclass_add.php?" . $_SERVER['QUERY_STRING'] . "&error=" . urlencode('The new tailored class cannot be added. Please try again!'));
@@ -69,7 +68,7 @@ include('index.html');
         </div>
         <div>
             <label for="end_date">End Date: </label>
-            <input type="date" id="end_date" name="end_date" maxlength="64" required/>
+            <input type="date" id="end_date" name="end_date" after="start_date" maxlength="64" required />
         </div>
         <div>
             <label for="quote">Quote: </label>
