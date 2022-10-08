@@ -18,6 +18,7 @@ include('index.html');
                     <th>Select</th>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>

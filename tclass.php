@@ -23,7 +23,7 @@ include('index.html');
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Student ID</th>
-                    <th>Action </th>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,7 +37,7 @@ include('index.html');
                         <td><?= $tailored->end_date ?></td>
                         <td><?= $tailored->student_id ?></td>
                         <td>
-
+                            <a href="tclass_details.php?id=<?= $tailored->id ?>">View details</a>
                             <a href="tclass_edit.php?id=<?= $tailored->id ?>">Edit</a>
                             <button type="submit" name="tailored_ids[]" value="<?= $tailored->id ?>">Delete</button>
                         </td>
