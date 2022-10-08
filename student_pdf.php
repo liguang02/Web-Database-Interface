@@ -44,7 +44,7 @@ try {
         while ($student = $students->fetchObject()) {
             $data .= '<tr>'
                 . '<td>' . $student->id . '</td>'
-                . '<td>' . $student->name . '</td></tr>';
+                . '<td>' . $student->firstName.''.$student->surname . '</td></tr>';
         }
     }
 
