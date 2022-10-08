@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
+require('common.php');
+/** @var PDO $dbh Database Connection */
 
 use Mpdf\Mpdf;
 
@@ -35,8 +37,18 @@ try {
 
     // Get the actual contents from a file - in this case, it's an HTML file https://mpdf.github.io/reference/mpdf-functions/writehtml.html
     // In reality, you'll likely need to somehow modify the template so the data is properly inserted
-    $mpdf->WriteHTML('
-<html>
+    $students = $dbh->prepare("SELECT * FROM `students`");
+
+    $data = array();
+    if ($students->execute() && $students->rowCount() > 0) {
+        while ($student = $students->fetchObject()) {
+            $data .= '<tr>'
+                . '<td>' . $student->id . '</td>'
+                . '<td>' . $student->name . '</td></tr>';
+        }
+    }
+
+    $content = '<html>
 
 <body>
 <!--mpdf
@@ -53,11 +65,6 @@ Page {PAGENO} of {nb}
 <sethtmlpageheader name="myheader" value="on" show-this-page="1" />
 <sethtmlpagefooter name="myfooter" value="on" />
 mpdf-->
-<?php
-    $employees = array(‘John’, ‘Michelle’, ‘Mari’, ‘Luke’, ‘Nellie’);
-    echo $employees
-?>
-
 <h1>
     <div style="text-align: center;">List of Student Names</div>
 </h1>
@@ -66,26 +73,18 @@ mpdf-->
     <tr>
         <td width="50%">Student ID</td>
         <td width="50%">Student Name</td>
-
     </tr>
     </thead>
     <tbody>
     <!-- ITEMS HERE -->
-    <?php echo $employees ?>
-    <tr><?php foreach ($employees as $employee){?>
-            <td>1</td>
-            <td><?php echo $employee ?></td>
-    <?php }?>
-    </tr>
-<!--    <tr>-->
-<!--        <td align="center">MF1234567</td>-->
-<!--        <td align="center">10</td>-->
-
-<!--    </tr>-->
+    ' . $data . '
     </tbody>
 </table>
 </body>
-</html>');
+</html>
+';
+
+    $mpdf->WriteHTML($content);
 
 
 
