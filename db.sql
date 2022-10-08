@@ -69,6 +69,18 @@ ALTER TABLE `USERS`
     ADD UNIQUE KEY `email` (`email`),
     ADD UNIQUE KEY `username` (`username`);
 
+CREATE TABLE `fit2104_a2`.`ENROLMENT`
+(
+    `id` INT NOT NULL AUTO_INCREMENT,
+    `course_id` INT NOT NULL,
+    `student_id` INT NOT NULL,
+    `date` DATE NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB;
+
+ALTER TABLE `ENROLMENT` ADD FOREIGN KEY (`course_id`) REFERENCES `COURSE`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `ENROLMENT` ADD FOREIGN KEY (`student_id`) REFERENCES `STUDENTS`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
 INSERT INTO `USERS` (`firstName`, `surname`, `email`, `username`, `password`) VALUES
     ('Dane', 'Oldman', 'dane.oldman@gmail.com', 'daneo', SHA2('daneo', 256));
 
