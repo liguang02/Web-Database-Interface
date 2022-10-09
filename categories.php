@@ -18,6 +18,7 @@ include('index.html');
                     <th>Select</th>
                     <th>ID</th>
                     <th>Name</th>
+                    <th>Parent Category</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -27,6 +28,11 @@ include('index.html');
                         <td><input type="checkbox" name="category_ids[]" value="<?= $category->id ?>"/></td>
                         <td><?= $category->id ?></td>
                         <td class="table-cell-left"><a href="category_details.php?id=<?= $category->id ?>"><?= $category->name ?></a></td>
+                        <?php
+                        $parent = $dbh->prepare("SELECT `name` FROM `CATEGORY` WHERE `id`=?");
+                        $parent->execute([$category->parent_id]);
+                        ?>
+                        <td class="table-cell-left"><?= $parent->rowCount() > 0? $parent->fetchObject()->name : "None" ?></td>
                         <td>
                             <a href="category_edit.php?id=<?= $category->id ?>">Edit</a>
                             <button type="submit" name="category_ids[]" value="<?= $category->id ?>">Delete</button>

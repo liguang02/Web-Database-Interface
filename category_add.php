@@ -12,9 +12,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $dbh->beginTransaction();
 
         // Add the new category and get its primary key
-        $category_stmt = $dbh->prepare("INSERT INTO `category` (`name`) VALUE (:name)");
+        $category_stmt = $dbh->prepare("INSERT INTO `category` (`name`, `parent_id`) VALUE (:name, :parent)") ;
         if (!$category_stmt->execute([
-            'name' => $_POST['name']
+            'name' => $_POST['name'],
+            'parent' => $_POST['parent']? $_POST['parent'] : NULL
         ])) {
             $dbh->rollback();  // In case of error, rollback everything
             header("Location: category_add.php?" . $_SERVER['QUERY_STRING'] . "&error=" . urlencode('The new category cannot be added. Please try again!'));
@@ -41,6 +42,19 @@ include('index.html');
         <div>
             <label for="name">Name: </label>
             <input type="text" id="name" name="name" maxlength="64" required/>
+        </div>
+        <div>
+            <label for="parent">Parent: </label>
+            <select id="parent" name="parent">
+                <option value="" selected></option>
+                <?php
+                $categories = $dbh->prepare("SELECT * FROM `CATEGORY` WHERE `parent_id` IS NULL");
+                $categories->execute();
+                while ($cat = $categories->fetchObject()) {
+                    ?>
+                    <option value="<?= $cat->id ?>"><?= $cat->name ?></option>
+                <?php } ?>
+            </select>
         </div>
         <div>
             <input type="submit" value="Add"/>

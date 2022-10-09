@@ -22,4 +22,11 @@ include('index.html');
 <h1>Category Details</h1>
 <div>
     <p>Name: <?= $category->name ?></p>
+    <?php
+    $parent = $dbh->prepare("SELECT `name` FROM `CATEGORY` WHERE `id`=?");
+    $parent->execute([$category->parent_id]);
+    if ($parent->rowCount() > 0) {
+    ?>
+        <p>Parent Category: <?=$parent->fetchObject()->name?></p>
+    <?php } ?>
 </div>

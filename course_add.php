@@ -122,9 +122,15 @@ include('index.html');
                 $categories = $dbh->prepare("SELECT * FROM `CATEGORY`");
                 $categories->execute();
                 while ($cat = $categories->fetchObject()) {
+                    if ($cat->parent_id) {
+                        $parent = $dbh->prepare("SELECT * FROM `CATEGORY` WHERE `id` = ?");
+                        $parent->execute([$cat->parent_id]);
                 ?>
-                    <option value="<?= $cat->id ?>"><?= $cat->name ?></option>
-                <?php } ?>
+                        <option value="<?= $cat->id ?>"><?= $parent->fetchObject()->name ." - ". $cat->name ?></option>
+                    <?php } else { ?>
+                        <option value="<?= $cat->id ?>"><?= $cat->name ?></option>
+                    <?php }
+                }?>
             </select>
         </div>
         <div>

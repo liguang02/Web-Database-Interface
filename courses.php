@@ -55,10 +55,17 @@ require_once('index.html');
                         <td class="table-cell-left"><a href="course_details.php?id=<?= $course->id ?>"><?= $course->name ?></a></td>
                         <td class="table-cell-left">$<?= $course->price ?></td>
                         <?php
-                            $cat = $dbh->prepare("SELECT `name` FROM `CATEGORY` WHERE `id`=?");
+                            $cat = $dbh->prepare("SELECT * FROM `CATEGORY` WHERE `id`=?");
                             $cat->execute([$course->category_id]);
+                            $category = $cat->fetchObject();
+                            if ($category->parent_id) {
+                                $parent = $dbh->prepare("SELECT * FROM `CATEGORY` WHERE `id` = ?");
+                                $parent->execute([$category->parent_id]);
                         ?>
-                        <td><?= $cat->fetchObject()->name ?></td>
+                                <td><?= $parent->fetchObject()->name." - ".$category->name ?></td>
+                        <?php } else {?>
+                                <td><?= $category->name ?></td>
+                        <?php } ?>
                         <td>
                             <a href="course_edit.php?id=<?= $course->id ?>">Edit</a>
                             <button class="btn btn-danger"type="submit" name="course_ids[]" value="<?= $course->id ?>">Delete</button>

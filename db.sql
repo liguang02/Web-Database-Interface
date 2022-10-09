@@ -19,7 +19,7 @@ CREATE TABLE `fit2104_a2`.`TAILORED_CLASS`
     `summary` VARCHAR(255) NOT NULL,
     `start_date` DATE NOT NULL,
     `end_date` DATE NOT NULL,
-    `quote` VARCHAR(255) NOT NULL,
+    `quote` INT NOT NULL,
     `otherInfo` VARCHAR(255) NOT NULL,
     `student_id` INT NOT NULL,
     PRIMARY KEY (`id`)
@@ -48,11 +48,13 @@ CREATE TABLE `fit2104_a2`.`CATEGORY`
 (
     `id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(64) NOT NULL,
+    `parent_id` INT,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
 ALTER TABLE `COURSE` ADD FOREIGN KEY (`category_id`) REFERENCES `CATEGORY`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `COURSE_IMAGE` ADD FOREIGN KEY (`course_id`) REFERENCES `COURSE`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `CATEGORY` ADD FOREIGN KEY (`parent_id`) REFERENCES `CATEGORY`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 CREATE TABLE `fit2104_a2`.`USERS`
 (
@@ -80,7 +82,7 @@ CREATE TABLE `fit2104_a2`.`ENROLMENT`
 ALTER TABLE `ENROLMENT` ADD FOREIGN KEY (`course_id`) REFERENCES `COURSE`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `ENROLMENT` ADD FOREIGN KEY (`student_id`) REFERENCES `STUDENTS`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-INSERT INTO `ENROLMENT` (`id`, `course_id`,`student_id`) VALUES ('1','1','1');
+INSERT INTO `ENROLMENT` (`id`, `course_id`,`student_id`) VALUES (1,1,1);
 INSERT INTO `USERS` (`firstName`, `surname`, `email`, `username`, `password`) VALUES
     ('Dane', 'Oldman', 'dane.oldman@gmail.com', 'daneo', SHA2('daneo', 256));
 
@@ -112,15 +114,49 @@ VALUES
     ("Boris","Cotton","350-8502 Justo. St.","(03) 1283 6214","2016-07-09","ipsum.suspendisse@outlook.com",false),
     ("Penelope","Alvarez","P.O. Box 882, 300 Egestas Street","(06) 4575 4802","2007-06-17","magna.phasellus.dolor@icloud.ca",false);
 
-INSERT INTO `CATEGORY` (`name`) VALUES
-    ("Beginner"),
-    ("Intermediate");
+INSERT INTO `CATEGORY` (`name`, `parent_id`) VALUES
+    ("Piano", NULL),
+    ("Guitar", NULL),
+    ("Violin", NULL),
+    ("Percussion", NULL),
+    ("Cello", NULL),
+    ("Viola", NULL),
+    ("Beginner", 1),
+    ("Intermediate", 1),
+    ("Advanced", 1),
+    ("Acoustic", 2),
+    ("Classical", 2),
+    ("Electric", 2),
+    ("Beginner", 3),
+    ("Intermediate", 3),
+    ("Advanced", 3),
+    ("Drums", 4),
+    ("Marimba", 4),
+    ("Xylophone", 4),
+    ("Beginner", 5),
+    ("Intermediate", 5),
+    ("Beginner", 6),
+    ("Intermediate", 6);
 
 INSERT INTO `COURSE` (`name`, `price`, `category_id`) VALUES
-    ("Guitar",120,1),
-    ("Violin",110,2);
+    ("Piano Beginner",110,7),
+    ("Piano Intermediate",140,8),
+    ("Piano Advanced",170,9),
+    ("Acoustic Guitar",150,10),
+    ("Classical Guitar",150,11),
+    ("Electric Guitar",150,12),
+    ("Violin Beginner",110,13),
+    ("Violin Intermediate",140,14),
+    ("Violin Advanced",170,15),
+    ("Drums",160,16),
+    ("Marimba",140,17),
+    ("Xylophone",120,18),
+    ("Cello Beginner",110,19),
+    ("Cello Intermediate",140,20),
+    ("Viola Beginner",110,21),
+    ("Viola Intermediate",140,22);
 
 INSERT INTO `TAILORED_CLASS` (`summary`,`start_date`,`end_date`,`quote`,`otherInfo`,`student_id`) VALUES
-    ("Extra class ", "2022-10-7", "2022-10-8", "100", "Extra class to explain the guitar theories", "3"),
-    ("Practice class", "2022-11-7", "2022-11-8", "120", "Violin practice", "2");
+    ("Extra class ", "2022-10-7", "2022-10-8", 100, "Extra class to explain the guitar theories", 3),
+    ("Practice class", "2022-11-7", "2022-11-8", 120, "Violin practice", 2);
 

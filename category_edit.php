@@ -13,9 +13,10 @@ if (isset($_GET['id'])) {
             $dbh->beginTransaction();
 
             // Update category
-            $category_stmt = $dbh->prepare("UPDATE `category` SET `name` = :name WHERE `id` = :id");
+            $category_stmt = $dbh->prepare("UPDATE `category` SET `name` = :name, `parent_id` = :parent WHERE `id` = :id");
             if (!$category_stmt->execute([
                 'name' => $_POST['name'],
+                'parent' => $_POST['parent'] ? $_POST['parent'] : NULL,
                 'id' => $_GET['id']
             ])) {
                 $dbh->rollback();  // In case of error, rollback everything
@@ -51,6 +52,24 @@ include('index.html');
                 <div>
                     <label for="name">New Name: </label>
                     <input type="text" id="name" name="name" maxlength="64" required value="<?= $initial->name ?>"/>
+                </div>
+                <div>
+                    <label for="parent">New Parent: </label>
+                    <select id="parent" name="parent">
+                        <option value=""></option>
+                        <?php
+                        $categories = $dbh->prepare("SELECT * FROM `CATEGORY` WHERE `parent_id` IS NULL");
+                        $categories->execute();
+                        while ($cat = $categories->fetchObject()) {
+                            if ($cat->id == $initial->parent_id) {
+                                var_dump("HI");
+                            ?>
+                                <option value="<?= $cat->id ?>" selected><?= $cat->name ?></option>
+                            <?php } else {?>
+                                <option value="<?= $cat->id ?>"><?= $cat->name ?></option>
+                            <?php }
+                        }?>
+                    </select>
                 </div>
                 <div>
                     <input type="submit" value="Update"/>
