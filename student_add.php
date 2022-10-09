@@ -17,7 +17,10 @@ require_once("common.php");
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Add new client</h1>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+
+<h1 class="display-3 text-center">Add New Student</h1>
+<hr>
 <div class="center">
 <?php
 // When a POST form is present (the user submitted a new student record form)
@@ -63,45 +66,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
 }
 ?>
         <form method="post">
-            <div class="aligned-form">
-                <div class="row">
-                    <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" name="firstName"/>
+            <div class="section text-center">
+                <div class="form-group">
+                    <label for="firstName">First Name: </label>
+                    <input type="text" id="firstName" name="firstName"/><br><br>
                 </div>
-                <div class="row">
-                    <label for="surname">Surname</label>
-                    <input type="text" id="surname" name="surname"/>
+                <div class="form-group">
+                <label for="surname">Surname: </label>
+                    <input type="text" id="surname" name="surname"/><br><br>
                 </div>
-                <div class="row">
-                    <label for="address">Address</label>
-                    <input type="text" id="address" name="address"/>
+                <div class="form-group">
+                <label for="address">Address: </label>
+                    <input type="text" id="address" name="address"/><br><br>
                 </div>
-                <div class="row">
-                    <label for="phone">Contact</label>
-                    <input type="tel" id="phone" pattern="\(0[0-9]\) [0-9]{4} [0-9]{4}" name="phone"/>
+                <div class="form-group">
+                <label for="phone">Contact: </label>
+                    <input type="tel" id="phone" pattern="\(0[0-9]\) [0-9]{4} [0-9]{4}" name="phone"/><br><br>
                 </div>
-                <div class="row">
-                    <label for="dob">Date of Birth</label>
-                    <input type="date" id="dob" name="dob"/>
+                <div class="form-group">
+                    <label for="dob">Date of Birth: </label>
+                    <input type="date" id="dob" name="dob"/><br><br>
                 </div>
-                <div class="row">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email"/>
+                <div class="form-group">
+                    <label for="email">Email: </label>
+                    <input type="email" id="email" name="email"/><br><br>
                 </div>
-                <div class="row">
-                    <label for="subscribe">Subscribed?</label>
+                <div class="form-group">
+                    <label for="subscribe">Subscribed?: </label>
                     <select name="subscribe" id="subscribe">
                         <option value="1">Yes</option>
                         <option value="0">No</option>
                     </select>
                 </div>
+                <br><hr>
+                <input class="btn btn-primary" type="submit" value="Submit"/> <br> <br>
+                <a class="btn btn-danger"  href="students.php">Cancel and back to homepage</a>
             </div>
-            <div class="row center">
-                <input type="submit" value="Add"/>
-            </div>
-            <div class="row center">
-                <a href="students.php">Cancel and back to homepage</a>
-            </div>
+
         </form>
 </div>
 </body>

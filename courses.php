@@ -10,19 +10,34 @@ if (isset($_POST['course_name'])) {
 }
 require_once('index.html');
 ?>
-
-<h1>COURSES</h1>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<br><hr>
+<h1 class="display-3 text-center"><ins>COURSES</ins></h1>
+<br>
 <div>
-    <form method="post">
+    <form class="text-center" method="post">
         <input type="text" name="course_name" placeholder="Search for Course">
         <button type="submit">Search</button>
     </form>
-    <a href="course_add.php">Add new course</a>
-    <form method="post" action="course_delete.php" id="courses-delete-form">
-        <input type="submit" value="Delete selected courses">
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <ul class="navbar-nav">
+
+            <li class="nav-item" style="padding-left:5.5in">
+                <a class="btn btn-success" href="course_add.php">Add New Course</a>
+            </li>
+            <li class="nav-item" style="padding-left:0.2in">
+                <form method="post">
+                    <button class="btn btn-primary" type="submit">Get List of Subscribed Emails</button>
+                </form>
+            </li>
+
+        </ul>
+    </nav>
+
+
         <?php if ($courses->execute() && $courses->rowCount() > 0) { ?>
-            <table>
-                <thead>
+            <table class="table table-hover">
+                <thead class="table-dark">
                 <tr>
                     <th>Select</th>
                     <th>ID</th>
@@ -46,7 +61,7 @@ require_once('index.html');
                         <td><?= $cat->fetchObject()->name ?></td>
                         <td>
                             <a href="course_edit.php?id=<?= $course->id ?>">Edit</a>
-                            <button type="submit" name="course_ids[]" value="<?= $course->id ?>">Delete</button>
+                            <button class="btn btn-danger"type="submit" name="course_ids[]" value="<?= $course->id ?>">Delete</button>
                         </td>
                     </tr>
                 <?php } ?>

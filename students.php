@@ -10,23 +10,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 require_once('index.html');
 ?>
-
-<h1>STUDENT LIST</h1>
-<div style = "text-align: left:100px">
-    <a href="student_pdf.php">Print PDF</a>
-</div>
-<div class = "center row">
-    <a href="student_add.php">Add new student record</a>
-    <form method="post">
-        <button type="submit">Get List of Subscribed Emails</button>
-    </form>
-</div>
+<br><hr>
+<h1 class="display-3 text-center"><ins>STUDENT LIST</ins></h1>
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <ul class="navbar-nav">
+        <li class="nav-item" style="padding-left:5.0in">
+            <a class="btn btn-primary" href="student_pdf.php">Print PDF</a>
+        </li>
+        <li class="nav-item" style="padding-left:0.2in">
+            <a class="btn btn-primary" href="student_add.php">Add new student record</a>
+        </li>
+        <li class="nav-item" style="padding-left:0.2in">
+            <form method="post">
+                <button class="btn btn-primary" type="submit">Get List of Subscribed Emails</button>
+            </form>
+        </li>
+    </ul>
+</nav>
 
 <div>
     <?php if ($students->execute() && $students->rowCount() > 0) {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {?>
-            <table>
-                <thead>
+            <table class="table table-hover">
+                <thead class="table-dark">
                 <tr>
                     <th>ID</th>
                     <th>First Name</th>
@@ -67,9 +73,11 @@ require_once('index.html');
                     </tr>
                 <?php } ?>
             <?php } else {?>
-                    <a href="students.php">Back to List of Students</a>
-                <table>
-                    <thead>
+                <div>
+                    <a class="btn btn-secondary"href="students.php">Back to List of Students</a>
+                </div>
+                <table class="table table-hover">
+                    <thead class="table-dark">
                     <tr>
                         <th>ID</th>
                         <th>Email</th>
