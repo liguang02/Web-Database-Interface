@@ -49,7 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="post">
             <input type="text" name="username" placeholder="Username"><br><br>
             <input type="password" name="password" placeholder="Password"><br><br>
-            <button type="submit">Login</button>
+            <button class="btn btn-primary" type="submit">Login</button>
+            <a class="btn btn-danger" href="index.html">Back to Main Menu</a>
         </form>
 </div>
 </body>
