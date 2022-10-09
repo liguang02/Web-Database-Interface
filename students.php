@@ -12,12 +12,16 @@ include('index.html');
 ?>
 
 <h1>STUDENT LIST</h1>
+<div style = "text-align: left:100px">
+    <a href="student_pdf.php">Print PDF</a>
+</div>
 <div class = "center row">
     <a href="student_add.php">Add new student record</a>
     <form method="post">
         <button type="submit">Get List of Subscribed Emails</button>
     </form>
 </div>
+
 <div>
     <?php if ($students->execute() && $students->rowCount() > 0) {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {?>
@@ -57,6 +61,8 @@ include('index.html');
                         <td>
                             <a href="student_edit.php? id=<?=$student->id?>">Update</a>
                             <a href="student_delete.php? id=<?=$student->id?>">Delete</a>
+                            <a href="student_details.php? id=<?=$student->id?>">Details</a>
+
                         </td>
                     </tr>
                 <?php } ?>

@@ -1,11 +1,10 @@
 <?php
-//require('common.php');
-include("common.php");
+require_once('common.php');
 /** @var $dbh PDO */
 
 // Redirect back to the list page, as id is not provided in the request
 if (!isset($_GET['id'])) {
-    header("Location: common.php");
+    header("Location: students.php");
     die();
 }
 ?>
@@ -30,14 +29,16 @@ if (!isset($_GET['id'])) {
         // Check if any of the POST fields are empty (which shouldn't be!)
         foreach ($_POST as $fieldName => $fieldValue) {
             if (empty($fieldValue) && $fieldValue != 0) {
-                echo friendlyError("'$fieldName' field is empty. Please fix the issue try again. ");
-                echo '<div class="center row"><button onclick="window.history.back()">Back to previous page</button></div>';
-                die();
+                header("Location: student_edit.php?" . $_SERVER['QUERY_STRING'] . "&error=" . urlencode('Make sure the form is valid before send!'));
+                exit();
             }
         }
         // Process the update record request (if a POST form is submitted)
         $query = "UPDATE `students` SET `firstName` = :firstName,`surname` = :surname,`address` = :address,`phone` = :phone,`dob` = :dob, `email` = :email, `subscribe`= :subscribe WHERE `id` = :id";
         $stmt = $dbh->prepare($query);
+
+//        $query2 = "UPDATE `enrolment` SET `student_id` = :student_id,`course_id` = :course_id WHERE `id` = :id";
+//        $stmt2 = $dbh->prepare($query2);
 
         // Here we create an array with key-value pairs - if you have noted, this essentially
         // generates the same array as $_POST. Yes, you can directly send $_POST into PDOStatement::execute()
@@ -52,17 +53,28 @@ if (!isset($_GET['id'])) {
             'subscribe' => $_POST['subscribe'],
             'id' => $_GET['id']  // ID must be provided when updating a record (different from inserting a record)
         ];
+        $enrolparam = [
+            'course_id' => $_POST['course'],
+            'student_id' => $_GET['id']
+        ];
 
-        if ($stmt->execute($parameters)) {
+        $enrol_stmt = $dbh->prepare("INSERT INTO `enrolment`(`course_id`, `student_id`) VALUES (:course_id, :student_id)");
+
+
+
+        if ($stmt->execute($parameters) && $enrol_stmt->execute($enrolparam)) {
             // If the record is inserted into database successfully, back to client list page
-            header("Location: students.php");
+            header("Location: student_edit.php?id=".$_GET['id']);
         } else {
-            echo friendlyError($stmt->errorInfo()[2]);
-            echo '<div class="center row"><button onclick="window.history.back()">Back to previous page</button></div>';
-            die();
+            $dbh->rollback();  // In case of error, rollback everything
+            header("Location: student_edit.php?" . $_SERVER['QUERY_STRING'] . "&error=" . urlencode('The student cannot be updated. Please try again!'));
+            exit();
         }
+
     } else {
-        // When no POST form is submitted, get the record from database
+
+
+    // When no POST form is submitted, get the record from database
         // Also pre-fill the data in fields, so it's easier for the user to modify the record
         $query = "SELECT * FROM `students` WHERE `id` = ?";
         $stmt = $dbh->prepare($query);
@@ -111,6 +123,23 @@ if (!isset($_GET['id'])) {
                                     <option value="0" selected>No</option>
                                 <?php } ?>
                             </select>
+                    </div>
+                    <div>
+                        <label for="courses">New Course: </label>
+                        <select id="course" name="course">
+                            <?php
+                            $courses = $dbh->prepare("SELECT * FROM `COURSE`");
+                            $courses->execute();
+                            while ($course = $courses->fetchObject()) {
+                                if ($course->id == $record->course_id ) {
+                                    ?>
+                                    <option value="<?= $course->id ?>" selected ><?= $course->name ?></option>
+                                <?php } else { ?>
+                                    <option value="<?= $course->id ?>"><?= $course->name ?></option>
+                                <?php }
+                            } ?>
+                        </select>
+
                     </div>
                     </div>
                     <div class="row center">

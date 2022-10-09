@@ -44,7 +44,7 @@ try {
         while ($student = $students->fetchObject()) {
             $data .= '<tr>'
                 . '<td>' . $student->id . '</td>'
-                . '<td>' . $student->firstName.''.$student->surname . '</td></tr>';
+                . '<td>' . $student->firstName.' '.$student->surname . '</td></tr>';
         }
     }
 
@@ -68,6 +68,7 @@ mpdf-->
 <h1>
     <div style="text-align: center;">List of Student Names</div>
 </h1>
+<div class=""container">
 <table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="8">
     <thead>
     <tr>
@@ -80,6 +81,8 @@ mpdf-->
     ' . $data . '
     </tbody>
 </table>
+</div>
+
 </body>
 </html>
 ';

@@ -1,4 +1,4 @@
-DROP TABLE `STUDENTS`, `TAILORED_CLASS`, `COURSE`, `COURSE_IMAGE`, `CATEGORY`, `USERS`;
+DROP TABLE `STUDENTS`, `TAILORED_CLASS`, `COURSE`, `COURSE_IMAGE`, `CATEGORY`, `USERS`, `ENROLMENT`;
 
 CREATE TABLE `fit2104_a2`.`STUDENTS`
 (
@@ -74,13 +74,13 @@ CREATE TABLE `fit2104_a2`.`ENROLMENT`
     `id` INT NOT NULL AUTO_INCREMENT,
     `course_id` INT NOT NULL,
     `student_id` INT NOT NULL,
-    `date` DATE NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB;
 
 ALTER TABLE `ENROLMENT` ADD FOREIGN KEY (`course_id`) REFERENCES `COURSE`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `ENROLMENT` ADD FOREIGN KEY (`student_id`) REFERENCES `STUDENTS`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+INSERT INTO `ENROLMENT` (`id`, `course_id`,`student_id`) VALUES ('1','1','1');
 INSERT INTO `USERS` (`firstName`, `surname`, `email`, `username`, `password`) VALUES
     ('Dane', 'Oldman', 'dane.oldman@gmail.com', 'daneo', SHA2('daneo', 256));
 

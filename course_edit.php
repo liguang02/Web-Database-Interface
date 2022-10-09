@@ -106,7 +106,7 @@ if (isset($_GET['id'])) {
 include('index.html');
 ?>
 
-<h1>Edit Course</h1>
+<h1>Edit Course #<?= $_GET['id'] ?></h1>
 <div>
     <?php if (!empty($_GET['error'])) { ?>
         <p class="error"><?= $_GET['error'] ?></p>
