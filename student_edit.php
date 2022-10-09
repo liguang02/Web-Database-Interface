@@ -12,12 +12,7 @@ if (!isset($_GET['id'])) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
     <title>Update student #<?= $_GET['id'] ?></title>
-
-<!--    <meta name="description" content="2022 S2 Lab 7 Exercise">-->
-<!--    <meta name="author" content="FIT2104 Web Database Interface">-->
-
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>

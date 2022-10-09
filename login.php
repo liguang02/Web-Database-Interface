@@ -39,16 +39,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!--    <link rel="stylesheet" href="styles.css">-->
 </head>
 <body>
-<h1>USER LOGIN</h1>
-<div>
-    <?php if (!empty($_GET['error'])) {?>
-        <p><?= $_GET['error'] ?></p>
-    <?php } ?>
-    <form method="post">
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="password" placeholder="Password">
-        <button type="submit">Login</button>
-    </form>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<h1 class="text-center display-1"><mark>Little Dreamer Music School</h1>
+<div class="text-center container">
+    <h1 class="display-3"><ins>User Login</ins></h1><br>
+        <?php if (!empty($_GET['error'])) {?>
+            <p><?= $_GET['error'] ?></p>
+        <?php } ?>
+        <form method="post">
+            <input type="text" name="username" placeholder="Username"><br><br>
+            <input type="password" name="password" placeholder="Password"><br><br>
+            <button type="submit">Login</button>
+        </form>
 </div>
 </body>
 </html>

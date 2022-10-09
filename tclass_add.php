@@ -20,7 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (
         !empty($_POST['summary']) &&
-        is_string($_POST['summary'])
+        is_string($_POST['summary'])&&
+        !empty($_POST['start_date']) &&
+        !empty($_POST['end_date']) &&
+        $_POST['start_date'] < $_POST['end_date'] &&
+        !empty($_POST['student_id'])
     ) {
         // Transaction to allow reversion if error occurs
         $dbh->beginTransaction();
