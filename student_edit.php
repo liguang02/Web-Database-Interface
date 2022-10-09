@@ -18,7 +18,7 @@ if (!isset($_GET['id'])) {
 </head>
 <body>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
-<h1 class="display-3 text-center"><ins>Update student #<?= $_GET['id'] ?></ins></h1>
+<h1 class="display-3 text-center"><ins>Edit student #<?= $_GET['id'] ?></ins></h1>
 <br><hr>
 <div class="center">
     <?php
@@ -83,44 +83,63 @@ if (!isset($_GET['id'])) {
                 <form method="post">
                     <div class="section text-center">
                     <div class="form-group">
-                        <label for="client_id">ID</label>
-                        <input type="number" id="client_id" value="<?= $record->client_id ?>" disabled/><br><br>
-                        <label for="Name">First Name</label>
-                        <input type="text" id="firstName" name="firstName" value="<?= $record->firstName ?>"/><br><br>
-                        <label for="surname">Surname</label>
-                        <input type="text" id="surname" name="surname" value="<?= $record->surname ?>"/><br><br>
-                        <label for="address">Address</label>
-                        <input type="text" id="address" name="address" value="<?= $record->address ?>"/><br><br>
-                        <label for="phone">Contact</label>
-                        <input type="tel" id="phone" pattern="\(0[0-9]\) [0-9]{4} [0-9]{4}" name="phone" value="<?= $record->phone ?>"/><br><br>
-                        <label for="dob">Date of Birth</label>
-                        <input type="date" id="dob" name="dob" value="<?= $record->dob?>"/><br><br>
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" value="<?= $record->email ?>"/><br><br>
-                        <label for="subscribe">Subscribed?</label>
-                            <select name="subscribe" id="subscribe">
-                                <?php if ($record->subscribe) {?>
-                                    <option value="1" selected>Yes</option>
-                                    <option value="0">No</option>
-                                <?php } else { ?>
-                                    <option value="1">Yes</option>
-                                    <option value="0" selected>No</option>
-                                <?php } ?>
+                        <div>
+                            <label for="client_id">ID</label>
+                            <input type="number" id="client_id" value="<?= $record->client_id ?>" disabled/><br><br>
+                        </div>
+                        <div>
+                            <label for="Name">First Name</label>
+                            <input type="text" id="firstName" name="firstName" value="<?= $record->firstName ?>"/><br><br>
+                        </div>
+                        <div>
+                            <label for="surname">Surname</label>
+                            <input type="text" id="surname" name="surname" value="<?= $record->surname ?>"/><br><br>
+                        </div>
+                        <div>
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" value="<?= $record->address ?>"/><br><br>
+                        </div>
+                        <div>
+                            <label for="phone">Contact</label>
+                            <input type="tel" id="phone" pattern="\(0[0-9]\) [0-9]{4} [0-9]{4}" name="phone" value="<?= $record->phone ?>"/><br><br>
+                        </div>
+                        <div>
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" value="<?= $record->dob?>"/><br><br>
+                        </div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" value="<?= $record->email ?>"/><br><br>
+                        </div>
+                        <div>
+                            <label for="subscribe">Subscribed?</label>
+                                <select name="subscribe" id="subscribe">
+                                    <?php if ($record->subscribe) {?>
+                                        <option value="1" selected>Yes</option>
+                                        <option value="0">No</option>
+                                    <?php } else { ?>
+                                        <option value="1">Yes</option>
+                                        <option value="0" selected>No</option>
+                                    <?php } ?>
+                                </select><br><br>
+                        </div>
+                        <div>
+                            <label for="courses">New Course: </label>
+                            <select id="course" name="course">
+                                <?php
+                                $courses = $dbh->prepare("SELECT * FROM `COURSE`");
+                                $courses->execute();
+                                while ($course = $courses->fetchObject()) {
+                                    if ($course->id == $record->course_id ) {
+                                        ?>
+                                        <option value="<?= $course->id ?>" selected ><?= $course->name ?></option>
+                                    <?php } else { ?>
+                                        <option value="<?= $course->id ?>"><?= $course->name ?></option>
+                                    <?php }
+                                } ?>
                             </select><br><br>
-                        <label for="courses">New Course: </label>
-                        <select id="course" name="course">
-                            <?php
-                            $courses = $dbh->prepare("SELECT * FROM `COURSE`");
-                            $courses->execute();
-                            while ($course = $courses->fetchObject()) {
-                                if ($course->id == $record->course_id ) {
-                                    ?>
-                                    <option value="<?= $course->id ?>" selected ><?= $course->name ?></option>
-                                <?php } else { ?>
-                                    <option value="<?= $course->id ?>"><?= $course->name ?></option>
-                                <?php }
-                            } ?>
-                        </select><br><br>
+                        </div>
+
                         <input class="btn btn-success" type="submit" value="Add Course / Update"/>
                         <a class="btn btn-danger" href="students.php">Cancel and back to list</a>
                     <div class="container bg-light">

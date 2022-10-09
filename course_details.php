@@ -18,16 +18,20 @@ if (isset($_GET['id'])) {
 
 include('home.html');
 ?>
-
-<h1>Course Details</h1>
-<div>
-    <p>Name: <?= $course->name ?></p>
-    <p>Price: $<?= $course->price ?></p>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<br><hr>
+<h1 class="display-3 text-center"><ins>Course Details</ins></h1>
+<div class="container text-end">
+    <a class="btn btn-danger" href="courses.php">Cancel and back to list</a>
+</div>
+<div class="container">
+    <p><font size="6"><b>Name:</b> <?= $course->name ?></font></p>
+    <p><font size="6"><b>Price:</b> $<?= $course->price ?></font></p>
     <?php
     $cat = $dbh->prepare("SELECT `name` FROM `CATEGORY` WHERE `id`=?");
     $cat->execute([$course->category_id]);
     ?>
-    <p>Category: <?= $cat->fetchObject()->name ?></p>
+    <p><font size="6"><b>Category:</b> <?= $cat->fetchObject()->name ?></font></p>
     <?php
     // Get images
     $image_stmt = $dbh->prepare("SELECT * FROM `course_image` WHERE `course_id` = ?");
@@ -38,4 +42,5 @@ include('home.html');
             </div>
         <?php }
     } ?>
+
 </div>

@@ -21,8 +21,8 @@ try {
     $mpdf->SetProtection(['print']);
 
     // Set some basic document metadata https://mpdf.github.io/reference/mpdf-functions/settitle.html
-    $mpdf->SetTitle("Acme Trading Co. - Invoice");
-    $mpdf->SetAuthor("Acme Trading Co.");
+    $mpdf->SetTitle("Little Dreamer Music School");
+    $mpdf->SetAuthor("Dane Oldman");
 
     // Set a watermark https://mpdf.github.io/reference/mpdf-functions/setwatermarktext.html
 //    $mpdf->SetWatermarkText("Paid");

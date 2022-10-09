@@ -22,6 +22,9 @@ require_once('home.html');
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
 <h1 class="display-3 text-center"><ins>Student Details</ins></h1>
 <br><hr>
+<div class="container text-end">
+    <a class="btn btn-danger" href="courses.php">Cancel and back to list</a>
+</div>
 <div class="container bg-light">
     <p><font size="6"><b>Student ID:</b> <?= $student->id ?></font></p>
     <p><font size="6"><b>First Name:</b> <?= $student->firstName ?></font></p>

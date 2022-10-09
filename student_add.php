@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
                     </select>
                 </div>
                 <br><hr>
-                <input class="btn btn-primary" type="submit" value="Submit"/> <br> <br>
+                <input class="btn btn-success" type="submit" value="Submit"/>
                 <a class="btn btn-danger"  href="students.php">Cancel and back to list</a>
             </div>
 

@@ -103,10 +103,11 @@ if (isset($_GET['id'])) {
     header("Location: courses.php");
 }
 
-include('home.html');
+require_once('home.html');
 ?>
-
-<h1>Edit Course #<?= $_GET['id'] ?></h1>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<br><hr>
+<h1 class="display-3 text-center"><ins>Edit Course #<?= $_GET['id'] ?></ins></h1><br>
 <div>
     <?php if (!empty($_GET['error'])) { ?>
         <p class="error"><?= $_GET['error'] ?></p>
@@ -116,13 +117,14 @@ include('home.html');
         if ($stmt->rowCount() > 0) {
             $initial = $stmt->fetchObject(); ?>
             <form method="post" enctype="multipart/form-data">
+                <div class="section text-center">
                 <div>
                     <label for="name">New Name: </label>
-                    <input type="text" id="name" name="name" maxlength="64" required value="<?= $initial->name ?>"/>
+                    <input type="text" id="name" name="name" maxlength="64" required value="<?= $initial->name ?>"/><br><br>
                 </div>
                 <div>
                     <label for="price">New Price: </label>
-                    <input type="number" id="price" name="price" min="0" max="999999999" required value="<?= $initial->price ?>"/>
+                    <input type="number" id="price" name="price" min="0" max="999999999" required value="<?= $initial->price ?>"/><br><br>
                 </div>
                 <div>
                     <label for="category">New Category: </label>
@@ -149,17 +151,14 @@ include('home.html');
                                 <?php }
                             }
                         }?>
-                    </select>
+                    </select><br><br>
                 </div>
                 <div>
                     <label for="image">Add More Images: </label>
-                    <input type="file" id="image" name="image[]" onchange="image_checker(event)" multiple="multiple"/>
+                    <input type="file" id="image" name="image[]" onchange="image_checker(event)" multiple="multiple"/><br><br>
                 </div>
-                <div>
-                    <input type="submit" value="Update"/>
-                </div>
-                <div>
-                    <a href="courses.php">Cancel and back to list</a>
+                    <input class="btn btn-success" type="submit" value="Submit"/>
+                    <a class="btn btn-danger" href="courses.php">Cancel and back to list</a>
                 </div>
             </form>
         <?php } else {

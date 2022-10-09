@@ -64,7 +64,7 @@ require_once('home.html');
 ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
 <br><hr>
-<h1 class="display-3 text-center"><ins>Edit Tailored Class</ins></h1>
+<h1 class="display-3 text-center"><ins>Edit Tailored Class #<?= $_GET['id'] ?></ins></h1>
 <div>
     <?php if (!empty($_GET['error'])) { ?>
         <p class="error"><?= $_GET['error'] ?></p>
@@ -100,7 +100,7 @@ require_once('home.html');
                     <label for="student_id">New Student ID: </label>
                     <input type="text" id="student_id" name="student_id" maxlength="64" required value="<?= $initial->student_id ?>"/><br><br>
                 </div>
-                    <input class="btn btn-success" type="submit" value="Update"/>
+                    <input class="btn btn-success" type="submit" value="Submit"/>
                     <a class="btn btn-danger" href="tclass.php">Cancel and back to list</a>
                 </div>
             </form>

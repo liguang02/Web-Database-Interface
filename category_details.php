@@ -18,15 +18,21 @@ if (isset($_GET['id'])) {
 
 include('home.html');
 ?>
-
-<h1>Category Details</h1>
-<div>
-    <p>Name: <?= $category->name ?></p>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<br><hr>
+<h1 class="display-3 text-center"><ins>Category Details</ins></h1>
+<br>
+<div class="container text-end">
+    <a class="btn btn-danger" href="categories.php">Cancel and back to list</a>
+</div>
+<div class="container">
+    <p><font size="6"><b>Name:</b> <?= $category->name ?></font></p>
     <?php
     $parent = $dbh->prepare("SELECT `name` FROM `CATEGORY` WHERE `id`=?");
     $parent->execute([$category->parent_id]);
     if ($parent->rowCount() > 0) {
     ?>
-        <p>Parent Category: <?=$parent->fetchObject()->name?></p>
+        <p><font size="6"><b>Parent Category:</b> <?=$parent->fetchObject()->name?></font></p>
     <?php } ?>
+
 </div>

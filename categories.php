@@ -6,14 +6,26 @@ $categories = $dbh->prepare("SELECT * FROM `category`");
 
 include('home.html');
 ?>
-<h1>CATEGORIES</h1>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<br><hr>
+<h1 class="display-3 text-center"><ins>CATEGORIES</ins></h1>
 <div>
-    <a href="category_add.php">Add new category</a>
-    <form method="post" action="category_delete.php" id="categories-delete-form">
-        <input type="submit" value="Delete selected categories">
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+        <ul class="navbar-nav">
+            <li class="nav-item" style="padding-left:5.5in">
+                <a class="btn btn-success" href="category_add.php">Add new category</a>
+
+            </li>
+            <li class="nav-item" style="padding-left:0.2in">
+                <form method="post" action="category_delete.php" id="categories-delete-form">
+                    <input class="btn btn-danger"  type="submit" value="Delete selected categories">
+            </li>
+        </ul>
+    </nav>
+
         <?php if ($categories->execute() && $categories->rowCount() > 0) { ?>
-            <table>
-                <thead>
+            <table class="table table-hover">
+                <thead class="table-dark">
                 <tr>
                     <th>Select</th>
                     <th>ID</th>
@@ -27,15 +39,16 @@ include('home.html');
                     <tr>
                         <td><input type="checkbox" name="category_ids[]" value="<?= $category->id ?>"/></td>
                         <td><?= $category->id ?></td>
-                        <td class="table-cell-left"><a href="category_details.php?id=<?= $category->id ?>"><?= $category->name ?></a></td>
+                        <td><?= $category->name ?> </td>
                         <?php
                         $parent = $dbh->prepare("SELECT `name` FROM `CATEGORY` WHERE `id`=?");
                         $parent->execute([$category->parent_id]);
                         ?>
                         <td class="table-cell-left"><?= $parent->rowCount() > 0? $parent->fetchObject()->name : "None" ?></td>
                         <td>
-                            <a href="category_edit.php?id=<?= $category->id ?>">Edit</a>
-                            <button type="submit" name="category_ids[]" value="<?= $category->id ?>">Delete</button>
+                            <a class="btn btn-info" href="category_details.php?id=<?= $category->id ?>">Details</a>
+                            <a class="btn btn-secondary" href="category_edit.php?id=<?= $category->id ?>">Edit</a>
+                            <button class="btn btn-danger" type="submit" name="category_ids[]" value="<?= $category->id ?>">Delete</button>
                         </td>
                     </tr>
                 <?php } ?>

@@ -89,7 +89,7 @@ include('home.html');
             <input type="text" id="student_id" name="student_id" maxlength="64" required/><br><br>
         </div>
         <br><hr>
-        <input class="btn btn-primary" type="submit" value="Submit"/> <br> <br>
+        <input class="btn btn-success" type="submit" value="Submit"/>
         <a class="btn btn-danger"  href="tclass.php">Cancel and back to list</a>
         </div>
     </form>

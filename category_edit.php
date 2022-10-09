@@ -38,8 +38,9 @@ if (isset($_GET['id'])) {
 
 include('home.html');
 ?>
-
-<h1>Edit Category</h1>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<br><hr>
+<h1 class="display-3 text-center"><ins>Edit Category #<?= $_GET['id'] ?></ins></h1><br>
 <div>
     <?php if (!empty($_GET['error'])) { ?>
         <p class="error"><?= $_GET['error'] ?></p>
@@ -49,9 +50,10 @@ include('home.html');
         if ($stmt->rowCount() > 0) {
             $initial = $stmt->fetchObject(); ?>
             <form method="post" enctype="multipart/form-data">
+                <div class="section text-center">
                 <div>
                     <label for="name">New Name: </label>
-                    <input type="text" id="name" name="name" maxlength="64" required value="<?= $initial->name ?>"/>
+                    <input type="text" id="name" name="name" maxlength="64" required value="<?= $initial->name ?>"/><br><br>
                 </div>
                 <div>
                     <label for="parent">New Parent: </label>
@@ -69,13 +71,14 @@ include('home.html');
                                 <option value="<?= $cat->id ?>"><?= $cat->name ?></option>
                             <?php }
                         }?>
-                    </select>
+                    </select><br><br>
                 </div>
-                <div>
-                    <input type="submit" value="Update"/>
-                </div>
-                <div>
-                    <a href="categories.php">Cancel and back to list</a>
+
+                    <input class="btn btn-success" type="submit" value="Submit"/>
+
+
+                    <a class="btn btn-danger" href="categories.php">Cancel and back to list</a>
+
                 </div>
             </form>
         <?php } else {

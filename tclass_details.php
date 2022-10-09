@@ -21,6 +21,9 @@ require_once('home.html');
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
 <br><hr>
 <h1 class="display-3 text-center"><ins>Tailored Class Details</ins></h1>
+<div class="container text-end">
+    <a class="btn btn-danger" href="tclass.php">Cancel and back to list</a>
+</div>
 <div class="container bg-light">
     <p><font size="6"><b>Summary:</b> <?= $tclass->summary ?></font></p>
     <p><font size="6"><b>Start Date:</b> <?= $tclass->start_date ?></font></p>
@@ -30,3 +33,4 @@ require_once('home.html');
     <p><font size="6"><b>Student ID:</b> <?= $tclass->student_id ?></font></p>
 
 </div>
+

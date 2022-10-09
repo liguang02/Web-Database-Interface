@@ -26,9 +26,8 @@ require_once('home.html');
                 <a class="btn btn-success" href="course_add.php">Add New Course</a>
             </li>
             <li class="nav-item" style="padding-left:0.2in">
-                <form method="post">
-                    <button class="btn btn-primary" type="submit">Get List of Subscribed Emails</button>
-                </form>
+                <form method="post" action="course_delete.php" id="courses-delete-form">
+                    <input class="btn btn-danger"  type="submit" value="Delete selected courses">
             </li>
 
         </ul>
@@ -52,7 +51,7 @@ require_once('home.html');
                     <tr>
                         <td><input type="checkbox" name="course_ids[]" value="<?= $course->id ?>"/></td>
                         <td><?= $course->id ?></td>
-                        <td class="table-cell-left"><a href="course_details.php?id=<?= $course->id ?>"><?= $course->name ?></a></td>
+                        <td><?= $course->name ?></td>
                         <td class="table-cell-left">$<?= $course->price ?></td>
                         <?php
                             $cat = $dbh->prepare("SELECT * FROM `CATEGORY` WHERE `id`=?");
@@ -67,7 +66,8 @@ require_once('home.html');
                                 <td><?= $category->name ?></td>
                         <?php } ?>
                         <td>
-                            <a href="course_edit.php?id=<?= $course->id ?>">Edit</a>
+                            <a class="btn btn-info" href="course_details.php?id=<?= $course->id ?>">Details</a>
+                            <a class="btn btn-secondary" href="course_edit.php?id=<?= $course->id ?>">Edit</a>
                             <button class="btn btn-danger"type="submit" name="course_ids[]" value="<?= $course->id ?>">Delete</button>
                         </td>
                     </tr>

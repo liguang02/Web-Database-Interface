@@ -15,14 +15,14 @@ require_once('home.html');
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
     <ul class="navbar-nav">
         <li class="nav-item" style="padding-left:5.0in">
-            <a class="btn btn-primary" href="student_pdf.php">Print PDF</a>
+            <a class="btn btn-warning" href="student_pdf.php">Print PDF</a>
         </li>
         <li class="nav-item" style="padding-left:0.2in">
-            <a class="btn btn-primary" href="student_add.php">Add new student record</a>
+            <a class="btn btn-success" href="student_add.php">Add new student record</a>
         </li>
         <li class="nav-item" style="padding-left:0.2in">
             <form method="post">
-                <button class="btn btn-primary" type="submit">Get List of Subscribed Emails</button>
+                <button class="btn btn-info" type="submit">Get List of Subscribed Emails</button>
             </form>
         </li>
     </ul>
