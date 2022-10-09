@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
             header("Location: student_add.php?" . $_SERVER['QUERY_STRING'] . "&error=" . urlencode('Make sure the form is valid before send!'));
         }
     }
+    $dbh->beginTransaction();
 
     // Process the update record request (if a POST form is submitted)
     // :columnname is a named placeholder (instead of ? for anonymous placeholder)
@@ -71,27 +72,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
             <div class="section text-center">
                 <div class="form-group">
                     <label for="firstName">First Name: </label>
-                    <input type="text" id="firstName" name="firstName"/><br><br>
+                    <input type="text" id="firstName" name="firstName" required/><br><br>
                 </div>
                 <div class="form-group">
                 <label for="surname">Surname: </label>
-                    <input type="text" id="surname" name="surname"/><br><br>
+                    <input type="text" id="surname" name="surname" required/><br><br>
                 </div>
                 <div class="form-group">
                 <label for="address">Address: </label>
-                    <input type="text" id="address" name="address"/><br><br>
+                    <input type="text" id="address" name="address" required/><br><br>
                 </div>
                 <div class="form-group">
                 <label for="phone">Contact: </label>
-                    <input type="tel" id="phone" pattern="\(0[0-9]\) [0-9]{4} [0-9]{4}" name="phone"/><br><br>
+                    <input type="tel" id="phone" pattern="\(0[0-9]\) [0-9]{4} [0-9]{4}" placeholder="(XX) XXXX XXXX" name="phone" required/><br><br>
                 </div>
                 <div class="form-group">
                     <label for="dob">Date of Birth: </label>
-                    <input type="date" id="dob" name="dob"/><br><br>
+                    <input type="date" id="dob" name="dob" required/><br><br>
                 </div>
                 <div class="form-group">
                     <label for="email">Email: </label>
-                    <input type="email" id="email" name="email"/><br><br>
+                    <input type="email" id="email" name="email" required/><br><br>
                 </div>
                 <div class="form-group">
                     <label for="subscribe">Subscribed?: </label>
