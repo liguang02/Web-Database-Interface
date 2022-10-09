@@ -23,7 +23,7 @@ require_once('home.html');
 <h1 class="display-3 text-center"><ins>Student Details</ins></h1>
 <br><hr>
 <div class="container text-end">
-    <a class="btn btn-danger" href="courses.php">Cancel and back to list</a>
+    <a class="btn btn-danger" href="students.php">Cancel and back to list</a>
 </div>
 <div class="container bg-light">
     <p><font size="6"><b>Student ID:</b> <?= $student->id ?></font></p>

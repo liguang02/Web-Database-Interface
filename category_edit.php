@@ -64,7 +64,6 @@ include('home.html');
                         $categories->execute();
                         while ($cat = $categories->fetchObject()) {
                             if ($cat->id == $initial->parent_id) {
-                                var_dump("HI");
                             ?>
                                 <option value="<?= $cat->id ?>" selected><?= $cat->name ?></option>
                             <?php } else {?>

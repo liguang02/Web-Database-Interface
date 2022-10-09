@@ -73,7 +73,7 @@ require_once('home.html');
                 <?php } ?>
             <?php } else {?>
                 <div>
-                    <a class="btn btn-secondary"href="students.php">Back to List of Students</a>
+                    <a class="btn btn-danger"href="students.php">Back to List of Students</a>
                 </div>
                 <table class="table table-hover">
                     <thead class="table-dark">
