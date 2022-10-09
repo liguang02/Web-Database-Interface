@@ -1,5 +1,7 @@
+-- drop existing tables to reset database
 DROP TABLE `STUDENTS`, `TAILORED_CLASS`, `COURSE`, `COURSE_IMAGE`, `CATEGORY`, `USERS`, `ENROLMENT`;
 
+-- Database Name is fit2104_a2
 CREATE TABLE `fit2104_a2`.`STUDENTS`
 (
     `id` INT NOT NULL AUTO_INCREMENT, 
