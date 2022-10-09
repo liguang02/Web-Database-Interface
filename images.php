@@ -12,7 +12,7 @@ require_once('home.html');
 <div>
     <form method="post" action="image_delete.php" id="images-delete-form">
         <div class="section text-center">
-        <input class="btn btn-danger" type="submit" value="Delete selected images">
+        <input class="btn btn-danger" type="submit" value="Delete selected images"><br>
         <?php if ($images->execute() && $images->rowCount() > 0) { ?>
             <table class="table table-hover">
                 <thead class="table-dark">
@@ -27,12 +27,10 @@ require_once('home.html');
                     <tr>
                         <td><input type="checkbox" name="image_ids[]"  value="<?= $image->id ?>"/></td>
                         <td>
-                            <div class="row">
-                                <p><img src="course_images/<?= $image->filePath ?>" width = 30% height="auto"></p>
-                            </div>
+                            <p><img src="course_images/<?= $image->filePath ?>" width = 250px height="auto"></p>
                         </td>
                         <td>
-                            <button type="submit" name="image_ids[]" value="<?= $image->id ?>">Delete</button>
+                            <button class="btn btn-danger" type="submit" name="image_ids[]" value="<?= $image->id ?>">Delete</button>
                         </td>
                     </tr>
                 <?php } ?>
