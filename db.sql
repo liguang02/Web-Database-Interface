@@ -82,7 +82,6 @@ CREATE TABLE `fit2104_a2`.`ENROLMENT`
 ALTER TABLE `ENROLMENT` ADD FOREIGN KEY (`course_id`) REFERENCES `COURSE`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 ALTER TABLE `ENROLMENT` ADD FOREIGN KEY (`student_id`) REFERENCES `STUDENTS`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-INSERT INTO `ENROLMENT` (`id`, `course_id`,`student_id`) VALUES (1,1,1);
 INSERT INTO `USERS` (`firstName`, `surname`, `email`, `username`, `password`) VALUES
     ('Dane', 'Oldman', 'dane.oldman@gmail.com', 'daneo', SHA2('daneo', 256));
 
@@ -157,6 +156,47 @@ INSERT INTO `COURSE` (`name`, `price`, `category_id`) VALUES
     ("Viola Intermediate",140,22);
 
 INSERT INTO `TAILORED_CLASS` (`summary`,`start_date`,`end_date`,`quote`,`otherInfo`,`student_id`) VALUES
-    ("Extra class ", "2022-10-7", "2022-10-8", 100, "Extra class to explain the guitar theories", 3),
-    ("Practice class", "2022-11-7", "2022-11-8", 120, "Violin practice", 2);
+    ("Extra theory", "2022-10-07", "2022-10-13", 100, "Extra class to explain guitar theories", 1),
+    ("Violin exam practice", "2022-11-07", "2022-11-20", 120, "Extra violin practice sessions to prepare for exam", 2),
+    ("Guitar Stringing", "2022-09-07", "2022-09-10", 70, "Tutorial for restringing guitars", 3),
+    ("Guitar exam practice", "2022-08-07", "2022-08-20", 150, "Extra violin practice sessions to prepare for exam", 3),
+    ("Violin Stringing", "2022-11-17", "2022-11-23", 100, "Tutorial for restringing violins", 4),
+    ("Toddler music class", "2022-12-18", "2022-12-19", 60, "Allow toddler to try out instruments", 5),
+    ("Advanced Theory", "2022-12-19", "2022-12-30", 200, "Extra class to explain advanced theories", 6)
+;
 
+INSERT INTO `ENROLMENT` (`course_id`,`student_id`) VALUES
+    (1,1),
+    (4,1),
+    (11,1),
+    (3,2),
+    (6,2),
+    (15,3),
+    (2,4),
+    (9,4),
+    (10,5),
+    (11,5),
+    (16,6),
+    (9,6),
+    (5,7),
+    (5,8),
+    (6,8),
+    (3,9);
+
+INSERT INTO `COURSE_IMAGE` (`course_id`, `filePath`) VALUES
+    (1, "course_1_6342b07d4db632.89476702.jpg"),
+    (2, "course_2_6342b1b0216d89.34612897.jpg"),
+    (3, "course_3_6342b1f3ce92b2.97419952.jpg"),
+    (4, "course_4_6342b21da10d57.04035109.jpg"),
+    (5, "course_5_6342b265df3183.04233647.jpg"),
+    (6, "course_6_6342b2708d0ea2.04883307.jpg"),
+    (7, "course_7_6342b90ae076a1.58071153.jpg"),
+    (8, "course_8_6342b4deaac383.97296383.jpg"),
+    (9, "course_9_6342b4febbaa54.18737296.jpg"),
+    (10, "course_10_6342b5f013dcb1.58871381.jpg"),
+    (11, "course_11_6342b61e8be434.19634655.jpg"),
+    (12, "course_12_6342b640934264.30677624.jpg"),
+    (13, "course_13_6342b7457347d6.21645195.jpg"),
+    (14, "course_14_6342b74b68aad9.89220624.jpg"),
+    (15, "course_15_6342b77fcdd600.15096298.jpg"),
+    (16, "course_16_6342b785c572d9.34977735.jpg");
