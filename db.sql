@@ -155,15 +155,23 @@ INSERT INTO `COURSE` (`name`, `price`, `category_id`) VALUES
     ("Viola Beginner",110,21),
     ("Viola Intermediate",140,22);
 
-INSERT INTO `TAILORED_CLASS` (`summary`,`start_date`,`end_date`,`quote`,`otherInfo`,`student_id`) VALUES
+INSERT INTO TAILORED_CLASS (`summary`,`start_date`,`end_date`,`quote`,`otherInfo`,`student_id`) VALUES
     ("Extra theory", "2022-10-07", "2022-10-13", 100, "Extra class to explain guitar theories", 1),
     ("Violin exam practice", "2022-11-07", "2022-11-20", 120, "Extra violin practice sessions to prepare for exam", 2),
     ("Guitar Stringing", "2022-09-07", "2022-09-10", 70, "Tutorial for restringing guitars", 3),
     ("Guitar exam practice", "2022-08-07", "2022-08-20", 150, "Extra violin practice sessions to prepare for exam", 3),
     ("Violin Stringing", "2022-11-17", "2022-11-23", 100, "Tutorial for restringing violins", 4),
     ("Toddler music class", "2022-12-18", "2022-12-19", 60, "Allow toddler to try out instruments", 5),
-    ("Advanced Theory", "2022-12-19", "2022-12-30", 200, "Extra class to explain advanced theories", 6)
-;
+    ("Advanced Theory", "2022-12-19", "2022-12-30", 200, "Extra class to explain advanced theories", 6),
+    ("Music Theory Revision", "2022-12-19", "2022-12-21", 100, "Extra class to revise beginner theories", 7),
+    ("Final Exam Revision", "2022-12-24", "2022-12-25", 50, "Extra class to revise syllabus for final exam", 7),
+    ("Piano exam practice", "2022-12-20", "2022-12-25", 150, "Extra class to practice for piano exam", 8),
+    ("Drum exam practice", "2022-12-21", "2022-12-23", 120, "Extra class to practice for drum exam", 9),
+    ("Drum extra class", "2022-12-22", "2022-12-23", 30, "Extra class to practice for drum instrument", 10),
+    ("Classical Guitar practice", "2022-12-23", "2022-12-24", 50, "Extra class to practice for classical guitar instrument", 11),
+    ("Advanced Classical Guitar practice", "2022-12-23", "2022-12-24", 50, "Extra class to practice for advanced classical guitar instrument", 12),
+    ("Intermediate Classical Guitar practice", "2022-12-24", "2022-12-26", 50, "Extra class to practice for intermediate classical guitar instrument", 13),
+    ("Intermediate Piano practice", "2022-12-26", "2022-12-27", 50, "Extra class to practice for Advanced piano instrument", 14);
 
 INSERT INTO `ENROLMENT` (`course_id`,`student_id`) VALUES
     (1,1),

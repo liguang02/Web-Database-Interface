@@ -28,10 +28,17 @@ include('home.html');
     <p><font size="6"><b>Name:</b> <?= $course->name ?></font></p>
     <p><font size="6"><b>Price:</b> $<?= $course->price ?></font></p>
     <?php
-    $cat = $dbh->prepare("SELECT `name` FROM `CATEGORY` WHERE `id`=?");
+    $cat = $dbh->prepare("SELECT * FROM `CATEGORY` WHERE `id`=?");
     $cat->execute([$course->category_id]);
-    ?>
-    <p><font size="6"><b>Category:</b> <?= $cat->fetchObject()->name ?></font></p>
+    $category = $cat->fetchObject();
+    if ($category->parent_id) {
+        $parent = $dbh->prepare("SELECT * FROM `CATEGORY` WHERE `id` = ?");
+        $parent->execute([$category->parent_id]);
+        ?>
+        <p><font size="6"><b>Category:</b> <?= $parent->fetchObject()->name." - ".$category->name ?></font></p>
+    <?php } else {?>
+        <p><font size="6"><b>Category:</b> <?= $category->name ?></font></p>
+    <?php } ?>
     <?php
     // Get images
     $image_stmt = $dbh->prepare("SELECT * FROM `course_image` WHERE `course_id` = ?");
