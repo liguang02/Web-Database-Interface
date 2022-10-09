@@ -51,7 +51,7 @@ require_once('home.html');
                         <td>
                             <a class="btn btn-info" href="tclass_details.php?id=<?= $tailored->id ?>">Details</a>
                             <a class="btn btn-secondary" href="tclass_edit.php?id=<?= $tailored->id ?>">Edit</a>
-                            <a class="btn btn-danger" href="tclass_delete.php?id=<?= $tailored->id ?>">Delete</a>
+                            <button class="btn btn-danger"type="submit" name="tailored_ids[]" value="<?= $tailored->id ?>">Delete</button>
                         </td>
                     </tr>
                 <?php endwhile; ?>
