@@ -38,7 +38,7 @@ include('home.html');
     if ($image_stmt->execute([$course->id]) && $image_stmt->rowCount() > 0) {
         while ($course_image = $image_stmt->fetchObject()) { ?>
             <div class="row">
-                <p><img src="course_images/<?= $course_image->filePath ?>"/></p>
+                <p><img src="course_images/<?= $course_image->filePath ?>" width= 30% height="auto"></p>
             </div>
         <?php }
     } ?>

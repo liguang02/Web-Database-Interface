@@ -6,14 +6,16 @@ $images = $dbh->prepare("SELECT * FROM `course_image`");
 
 require_once('home.html');
 ?>
-
-<h1>IMAGES</h1>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<br><hr>
+<h1 class="display-3 text-center"><ins>IMAGES</ins></h1>
 <div>
     <form method="post" action="image_delete.php" id="images-delete-form">
-        <input type="submit" value="Delete selected images">
+        <div class="section text-center">
+        <input class="btn btn-danger" type="submit" value="Delete selected images"><br>
         <?php if ($images->execute() && $images->rowCount() > 0) { ?>
-            <table>
-                <thead>
+            <table class="table table-hover">
+                <thead class="table-dark">
                 <tr>
                     <th>Select</th>
                     <th>Image</th>
@@ -23,14 +25,12 @@ require_once('home.html');
                 <tbody>
                 <?php while ($image = $images->fetchObject()) { ?>
                     <tr>
-                        <td><input type="checkbox" name="image_ids[]" value="<?= $image->id ?>"/></td>
+                        <td><input type="checkbox" name="image_ids[]"  value="<?= $image->id ?>"/></td>
                         <td>
-                            <div class="row">
-                                <p><img src="course_images/<?= $image->filePath ?>"/></p>
-                            </div>
+                            <p><img src="course_images/<?= $image->filePath ?>" width = 250px height="auto"></p>
                         </td>
                         <td>
-                            <button type="submit" name="image_ids[]" value="<?= $image->id ?>">Delete</button>
+                            <button class="btn btn-danger" type="submit" name="image_ids[]" value="<?= $image->id ?>">Delete</button>
                         </td>
                     </tr>
                 <?php } ?>
@@ -39,6 +39,7 @@ require_once('home.html');
         <?php } else {?>
             <p>There's no data in images</p>
         <?php } ?>
+        </div>
     </form>
 </div>
 </body>
