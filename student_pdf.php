@@ -43,14 +43,16 @@ try {
     if ($students->execute() && $students->rowCount() > 0) {
         while ($student = $students->fetchObject()) {
             $data .= '<tr>'
-                . '<td>' . $student->id . '</td>'
-                . '<td>' . $student->firstName.' '.$student->surname . '</td></tr>';
+                . '<td style="border:1px solid black;">' . $student->id . '</td>'
+                . '<td style="border:1px solid black;">' . $student->firstName.' '.$student->surname . '</td></tr>';
         }
     }
 
     $content = '<html>
 
 <body>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+
 <!--mpdf
 <htmlpageheader name="myheader">
 <table width="100%"><tr>
@@ -68,11 +70,11 @@ mpdf-->
 <h1>
     <div style="text-align: center;">List of Student Names</div>
 </h1>
-<table class="items" width="100%" style="font-size: 9pt; border-collapse: collapse; " cellpadding="8">
+<table class="items" width="100%" style="font-size: 15pt; border:1px solid black; border-collapse: collapse; " cellpadding="8">
     <thead>
     <tr>
-        <td width="50%">Student ID</td>
-        <td width="50%">Student Name</td>
+        <td style="border:1px solid black; background-color: silver" width="50%">Student ID </td>
+        <td style="border:1px solid black; background-color: silver" width="50%">Student Name</td>
     </tr>
     </thead>
     <tbody>

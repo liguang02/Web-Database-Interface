@@ -19,16 +19,17 @@ if (isset($_GET['id'])) {
 
 require_once('index.html');
 ?>
-
-<h1>Student Details</h1>
-<div>
-    <p>Student ID: <?= $student->id ?></p>
-    <p>First Name: <?= $student->firstName ?></p>
-    <p>Last Name: <?= $student->surname ?></p>
-    <p>Address: <?= $student->address ?></p>
-    <p>Phone Number: <?= $student->phone?></p>
-    <p>Date of Birth: <?= $student->dob ?></p>
-    <p>Email: <?= $student->email ?></p>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<h1 class="display-3 text-center"><ins>Student Details</ins></h1>
+<br><hr>
+<div class="container bg-light">
+    <p><font size="6"><b>Student ID:</b> <?= $student->id ?></font></p>
+    <p><font size="6"><b>First Name:</b> <?= $student->firstName ?></font></p>
+    <p><font size="6"><b>Last Name:</b> <?= $student->surname ?></font></p>
+    <p><font size="6"><b>Address:</b> <?= $student->address ?></font></p>
+    <p><font size="6"><b>Phone Number:</b> <?= $student->phone?></font></p>
+    <p><font size="6"><b>Date of Birth:</b> <?= $student->dob ?></font></p>
+    <p><font size="6"><b>Email:</b> <?= $student->email ?></font></p>
     <?php
     if ($student->subscribe) {
         $subscribed = "Yes";
@@ -36,14 +37,14 @@ require_once('index.html');
         $subscribed = "No";
     }
     ?>
-    <p>Subscribed: <?= $subscribed ?></p>
+    <p><font size="6"><b>Subscribed: <?= $subscribed ?></font></p>
     <br>
-    <p>Courses Enrolled: </p>
+    <p class="display-4 text-center"><ins>Courses Enrolled: </ins></p>
     <?php if ($enrolments->execute([$student->id]) && $enrolments->rowCount() > 0) { ?>
-        <table>
-            <thead>
+        <table class="table table-hover">
+            <thead class="table-dark">
             <tr>
-                <th>ID</th>
+                <th>Enrolment ID</th>
                 <th>Course Name</th>
             </tr>
             </thead>

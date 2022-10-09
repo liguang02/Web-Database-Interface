@@ -18,28 +18,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<br><hr>
 
-<h1>Contact Us</h1>
+<h1 class="display-5"><ins>Contact Us</ins></h1>
 <form method="post">
     <?php if (!empty($_GET['error'])) { ?>
         <p class="error"><?= $_GET['error'] ?></p>
     <?php } ?>
     <p>
-        <input type="text" name="name" placeholder="Name" required class="email-form-control">
+        <input class="form-control" type="text" name="name" placeholder="Name" required class="email-form-control">
     </p>
     <p>
-        <input type="text" name="email" placeholder="Email" required class="email-form-control">
+        <input class="form-control" type="text" name="email" placeholder="Email" required class="email-form-control">
     </p>
     <p>
-        <input type="text" name="phone" placeholder="Phone Number" required class="email-form-control">
+        <input class="form-control" type="text" name="phone" placeholder="Phone Number" required class="email-form-control">
     </p>
     <p>
-        <input type="text" name="subject" placeholder="Enquiry Subject" required class="email-form-control">
+        <input class="form-control" type="text" name="subject" placeholder="Enquiry Subject" required class="email-form-control">
     </p>
     <p>
-        <textarea name="body" placeholder="Write enquiry message here" required class="email-form-control"></textarea>
+        <textarea class="form-control" rows="3"  name="body" placeholder="Write enquiry message here" required class="email-form-control"></textarea>
     </p>
-    <p>
-        <button type="submit">Send Enquiry</button>
+    <p class="text-center">
+        <button class="btn btn-success" type="submit">Send Enquiry</button>
     </p>
 </form>

@@ -18,14 +18,15 @@ if (isset($_GET['id'])) {
 
 require_once('index.html');
 ?>
-
-<h1>Tailored Class Details</h1>
-<div>
-    <p>Summary: <?= $tclass->summary ?></p>
-    <p>Start Date: <?= $tclass->start_date ?></p>
-    <p>End Date: <?= $tclass->end_date ?></p>
-    <p>Quote: <?= $tclass->quote ?></p>
-    <p>Other Information: <?= $tclass->otherInfo ?></p>
-    <p>Student ID: <?= $tclass->student_id ?></p>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<br><hr>
+<h1 class="display-3 text-center"><ins>Tailored Class Details</ins></h1>
+<div class="container bg-light">
+    <p><font size="6"><b>Summary:</b> <?= $tclass->summary ?></font></p>
+    <p><font size="6"><b>Start Date:</b> <?= $tclass->start_date ?></font></p>
+    <p><font size="6"><b>End Date:</b> <?= $tclass->end_date ?></font></p>
+    <p><font size="6"><b>Quote:</b> <?= $tclass->quote ?></font></p>
+    <p><font size="6"><b>Other Info:</b> <?= $tclass->otherInfo ?></font></p>
+    <p><font size="6"><b>Student ID:</b> <?= $tclass->student_id ?></font></p>
 
 </div>

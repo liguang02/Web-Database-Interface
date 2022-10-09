@@ -65,10 +65,9 @@ require_once('index.html');
                         ?>
                         <td class="table-cell-left"><?= $subscribed?></td>
                         <td>
-                            <a href="student_edit.php? id=<?=$student->id?>">Update</a>
-                            <a href="student_delete.php? id=<?=$student->id?>">Delete</a>
-                            <a href="student_details.php? id=<?=$student->id?>">Details</a>
-
+                            <a class="btn btn-info" href="student_details.php? id=<?=$student->id?>">Details</a>
+                            <a class="btn btn-secondary" href="student_edit.php? id=<?=$student->id?>">Edit</a>
+                            <a class="btn btn-danger" href="student_delete.php? id=<?=$student->id?>">Delete</a>
                         </td>
                     </tr>
                 <?php } ?>

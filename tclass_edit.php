@@ -62,8 +62,9 @@ if (isset($_GET['id'])) {
 
 require_once('index.html');
 ?>
-
-<h1>Edit Tailored Class</h1>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<br><hr>
+<h1 class="display-3 text-center"><ins>Edit Tailored Class</ins></h1>
 <div>
     <?php if (!empty($_GET['error'])) { ?>
         <p class="error"><?= $_GET['error'] ?></p>
@@ -72,44 +73,43 @@ require_once('index.html');
     if ($stmt->execute([$_GET['id']])) {
         if ($stmt->rowCount() > 0) {
             $initial = $stmt->fetchObject(); ?>
+
             <form method="post" enctype="multipart/form-data">
+                <div class="section text-center">
                 <div>
                     <label for="summary">New Summary: </label>
-                    <input type="text" id="summary" name="summary" maxlength="64" required value="<?= $initial->summary ?>"/>
+                    <input type="text" id="summary" name="summary" maxlength="64" required value="<?= $initial->summary ?>"/><br><br>
                 </div>
                 <div>
                     <label for="start_date">New Start Date: </label>
-                    <input type="date" id="start_date" name="start_date" maxlength="64" required value="<?= $initial->start_date ?>"/>
+                    <input type="date" id="start_date" name="start_date" maxlength="64" required value="<?= $initial->start_date ?>"/><br><br>
                 </div>
                 <div>
                     <label for="end_date">New End Date: </label>
-                    <input type="date" id="end_date" name="end_date" maxlength="64" required value="<?= $initial->end_date ?>"/>
+                    <input type="date" id="end_date" name="end_date" maxlength="64" required value="<?= $initial->end_date ?>"/><br><br>
                 </div>
                 <div>
                     <label for="quote">New Quote: </label>
-                    <input type="text" id="quote" name="quote" maxlength="64" required value="<?= $initial->quote ?>"/>
+                    <input type="text" id="quote" name="quote" maxlength="64" required value="<?= $initial->quote ?>"/><br><br>
                 </div>
                 <div>
                     <label for="otherInfo">New Other Information: </label>
-                    <input type="text" id="otherInfo" name="otherInfo" maxlength="64" required value="<?= $initial->otherInfo ?>"/>
+                    <input type="text" id="otherInfo" name="otherInfo" maxlength="64" required value="<?= $initial->otherInfo ?>"/><br><br>
                 </div>
                 <div>
                     <label for="student_id">New Student ID: </label>
-                    <input type="text" id="student_id" name="student_id" maxlength="64" required value="<?= $initial->student_id ?>"/>
+                    <input type="text" id="student_id" name="student_id" maxlength="64" required value="<?= $initial->student_id ?>"/><br><br>
                 </div>
-                <div>
-                    <input type="submit" value="Update"/>
-                </div>
-                <div>
-                    <a href="categories.php">Cancel and back to list</a>
+                    <input class="btn btn-success" type="submit" value="Update"/>
+                    <a class="btn btn-danger" href="tclass.php">Cancel and back to list</a>
                 </div>
             </form>
         <?php } else {
-            header("Location: categories.php");
+            header("Location: tclass.php");
         }
     } else {
         $dbh->rollback();  // In case of error, rollback everything
-        header("Location: category_edit.php?" . $_SERVER['QUERY_STRING'] . "&error=" . urlencode('The category cannot be updated. Please try again!'));
+        header("Location: tclass_edit.php?" . $_SERVER['QUERY_STRING'] . "&error=" . urlencode('The Tailored Class cannot be updated. Please try again!'));
         exit();
     }
     ?>

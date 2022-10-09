@@ -1,5 +1,6 @@
 <?php
 require_once('common.php');
+require('index.html');
 /** @var $dbh PDO */
 
 // Redirect back to the list page, as id is not provided in the request
@@ -16,7 +17,9 @@ if (!isset($_GET['id'])) {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Update student #<?= $_GET['id'] ?></h1>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<h1 class="display-3 text-center"><ins>Update student #<?= $_GET['id'] ?></ins></h1>
+<br><hr>
 <div class="center">
     <?php
     // When a POST form is present (the user submitted a new client record form)
@@ -78,37 +81,22 @@ if (!isset($_GET['id'])) {
             if ($stmt->rowCount() > 0) {
                 $record = $stmt->fetchObject(); ?>
                 <form method="post">
-                    <div class="aligned-form">
-                        <div class="row">
-                            <label for="client_id">ID</label>
-                            <input type="number" id="client_id" value="<?= $record->client_id ?>" disabled/>
-                        </div>
-                        <div class="row">
-                            <label for="Name">First Name</label>
-                            <input type="text" id="firstName" name="firstName" value="<?= $record->firstName ?>"/>
-                        </div>
-                        <div class="row">
-                            <label for="surname">Surname</label>
-                            <input type="text" id="surname" name="surname" value="<?= $record->surname ?>"/>
-                        </div>
-                        <div class="row">
-                            <label for="address">Address</label>
-                            <input type="text" id="address" name="address" value="<?= $record->address ?>"/>
-                        </div>
-                    </div>
-                    <div class="row">
+                    <div class="section text-center">
+                    <div class="form-group">
+                        <label for="client_id">ID</label>
+                        <input type="number" id="client_id" value="<?= $record->client_id ?>" disabled/><br><br>
+                        <label for="Name">First Name</label>
+                        <input type="text" id="firstName" name="firstName" value="<?= $record->firstName ?>"/><br><br>
+                        <label for="surname">Surname</label>
+                        <input type="text" id="surname" name="surname" value="<?= $record->surname ?>"/><br><br>
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" value="<?= $record->address ?>"/><br><br>
                         <label for="phone">Contact</label>
-                        <input type="tel" id="phone" pattern="\(0[0-9]\) [0-9]{4} [0-9]{4}" name="phone" value="<?= $record->phone ?>"/>
-                    </div>
-                    <div class="row">
+                        <input type="tel" id="phone" pattern="\(0[0-9]\) [0-9]{4} [0-9]{4}" name="phone" value="<?= $record->phone ?>"/><br><br>
                         <label for="dob">Date of Birth</label>
-                        <input type="date" id="dob" name="dob" value="<?= $record->dob?>"/>
-                    </div>
-                    <div class="row">
+                        <input type="date" id="dob" name="dob" value="<?= $record->dob?>"/><br><br>
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" value="<?= $record->email ?>"/>
-                    </div>
-                    <div class="row">
+                        <input type="email" id="email" name="email" value="<?= $record->email ?>"/><br><br>
                         <label for="subscribe">Subscribed?</label>
                             <select name="subscribe" id="subscribe">
                                 <?php if ($record->subscribe) {?>
@@ -118,9 +106,7 @@ if (!isset($_GET['id'])) {
                                     <option value="1">Yes</option>
                                     <option value="0" selected>No</option>
                                 <?php } ?>
-                            </select>
-                    </div>
-                    <div>
+                            </select><br><br>
                         <label for="courses">New Course: </label>
                         <select id="course" name="course">
                             <?php
@@ -134,17 +120,15 @@ if (!isset($_GET['id'])) {
                                     <option value="<?= $course->id ?>"><?= $course->name ?></option>
                                 <?php }
                             } ?>
-                        </select>
-                    </div>
-                    </div>
-                    <div class="row center">
-                        <input type="submit" value="Add Course / Update"/>
-                    </div>
-                    <div>
-                        <p>Courses Enrolled: </p>
+                        </select><br><br>
+                        <input class="btn btn-success" type="submit" value="Add Course / Update"/>
+                        <a class="btn btn-danger" href="students.php">Cancel and back to list</a>
+                    <div class="container bg-light">
+
+                    <h1 class="display-5 text-start"><ins>Courses Enrolled: </ins></h1>
                         <?php if ($enrolments->execute([$record->id]) && $enrolments->rowCount() > 0) { ?>
-                            <table>
-                                <thead>
+                            <table class="table table-hover">
+                                <thead class="table-dark">
                                 <tr>
                                     <th>ID</th>
                                     <th>Course Name</th>
@@ -167,9 +151,9 @@ if (!isset($_GET['id'])) {
                             <p>No courses enrolled!</p>
                         <?php } ?>
                     </div>
-                    <div class="row center">
-                        <a href="students.php">Cancel and back to homepage</a>
                     </div>
+                    </div>
+
                 </form>
             <?php } else {
                 header("Location: students.php");

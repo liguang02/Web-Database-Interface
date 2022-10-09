@@ -54,43 +54,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 include('index.html');
 ?>
-
-<h1>Add New Tailored Class</h1>
-<div>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
+<br><hr>
+<h1 class="display-3 text-center"><ins>Add New Tailored Class</ins></h1><br>
+<div class="center">
     <?php if (!empty($_GET['error'])) { ?>
         <p class="error"><?= $_GET['error'] ?></p>
     <?php } ?>
 
     <form method="post" enctype="multipart/form-data">
+        <div class="section text-center">
         <div>
             <label for="summary">Summary: </label>
-            <input type="text" id="summary" name="summary" maxlength="100" required/>
+            <input type="text" id="summary" name="summary" maxlength="100" required/><br><br>
         </div>
         <div>
             <label for="start_date">Start Date: </label>
-            <input type="date" id="start_date" name="start_date" maxlength="64" required/>
+            <input type="date" id="start_date" name="start_date" maxlength="64" required/><br><br>
         </div>
         <div>
             <label for="end_date">End Date: </label>
-            <input type="date" id="end_date" name="end_date" after="start_date" maxlength="64" required />
+            <input type="date" id="end_date" name="end_date" after="start_date" maxlength="64" required /><br><br>
         </div>
         <div>
             <label for="quote">Quote: </label>
-            <input type="text" id="quote" name="quote" maxlength="64" required/>
+            <input type="text" id="quote" name="quote" maxlength="64" required/><br><br>
         </div>
         <div>
-            <label for="otherInfo">Other Information: </label>
-            <input type="text" id="otherInfo" name="otherInfo" maxlength="64" required/>
+            <label for="otherInfo">Other Info: </label>
+            <input type="text" id="otherInfo" name="otherInfo" maxlength="64" required/><br><br>
         </div>
         <div>
             <label for="student_id">Student ID: </label>
-            <input type="text" id="student_id" name="student_id" maxlength="64" required/>
+            <input type="text" id="student_id" name="student_id" maxlength="64" required/><br><br>
         </div>
-        <div>
-            <input type="submit" value="Add"/>
-        </div>
-        <div>
-            <a href="categories.php">Cancel and back to list</a>
+        <br><hr>
+        <input class="btn btn-primary" type="submit" value="Submit"/> <br> <br>
+        <a class="btn btn-danger"  href="tclass.php">Cancel and back to list</a>
         </div>
     </form>
 </div>

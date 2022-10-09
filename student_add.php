@@ -3,6 +3,8 @@
 /** @var $dbh PDO */
 
 require_once("common.php");
+include('index.html');
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -100,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
                 </div>
                 <br><hr>
                 <input class="btn btn-primary" type="submit" value="Submit"/> <br> <br>
-                <a class="btn btn-danger"  href="students.php">Cancel and back to homepage</a>
+                <a class="btn btn-danger"  href="students.php">Cancel and back to list</a>
             </div>
 
         </form>
