@@ -1,5 +1,5 @@
 <?php
 require('common.php');
-include('index.html');
+require_once('index.html');
 ?>
 

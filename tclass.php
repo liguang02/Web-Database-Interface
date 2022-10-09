@@ -4,7 +4,7 @@ require_once('common.php');
 
 $tailored_class = $dbh->prepare("SELECT * FROM `tailored_class`");
 
-include('index.html');
+require_once('index.html');
 ?>
 <h1>TAILORED CLASS</h1>
 <div>

@@ -1,5 +1,5 @@
 <?php
-include("home.html");
+require_once("home.html");
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['phone']) && !empty($_POST['subject']) && !empty($_POST['body'])) {
         $to = "contact_littledreamermusic@example.com";

@@ -60,7 +60,7 @@ if (isset($_GET['id'])) {
     header("Location: tclass.php");
 }
 
-include('index.html');
+require_once('index.html');
 ?>
 
 <h1>Edit Tailored Class</h1>

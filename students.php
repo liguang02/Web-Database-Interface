@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $students = $dbh->prepare("SELECT * FROM `students`");
 }
 
-include('index.html');
+require_once('index.html');
 ?>
 
 <h1>STUDENT LIST</h1>

@@ -4,7 +4,7 @@ require_once('common.php');
 
 $images = $dbh->prepare("SELECT * FROM `course_image`");
 
-include('index.html');
+require_once('index.html');
 ?>
 
 <h1>IMAGES</h1>

@@ -8,7 +8,7 @@ if (isset($_POST['course_name'])) {
     $courses = $dbh->prepare("SELECT * FROM `course`");
 
 }
-include('index.html');
+require_once('index.html');
 ?>
 
 <h1>COURSES</h1>

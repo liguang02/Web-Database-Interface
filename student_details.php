@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
     header("Location: students.php");
 }
 
-include('index.html');
+require_once('index.html');
 ?>
 
 <h1>Student Details</h1>

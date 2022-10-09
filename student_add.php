@@ -2,7 +2,7 @@
 
 /** @var $dbh PDO */
 
-include("common.php");
+require_once("common.php");
 ?>
 <!doctype html>
 <html lang="en">
