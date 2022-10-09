@@ -3,7 +3,7 @@
 /** @var $dbh PDO */
 
 require_once("common.php");
-include('index.html');
+include('home.html');
 
 ?>
 <!doctype html>

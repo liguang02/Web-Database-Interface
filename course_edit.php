@@ -103,7 +103,7 @@ if (isset($_GET['id'])) {
     header("Location: courses.php");
 }
 
-include('index.html');
+include('home.html');
 ?>
 
 <h1>Edit Course #<?= $_GET['id'] ?></h1>

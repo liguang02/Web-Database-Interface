@@ -1,6 +1,6 @@
 <?php
 require_once('common.php');
-require('index.html');
+require('home.html');
 /** @var $dbh PDO */
 
 // Redirect back to the list page, as id is not provided in the request

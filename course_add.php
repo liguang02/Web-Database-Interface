@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      exit();
 }
 
-include('index.html');
+include('home.html');
 ?>
 
 <h1>Add New Course</h1>

@@ -4,7 +4,7 @@ require_once('common.php');
 
 $categories = $dbh->prepare("SELECT * FROM `category`");
 
-include('index.html');
+include('home.html');
 ?>
 <h1>CATEGORIES</h1>
 <div>

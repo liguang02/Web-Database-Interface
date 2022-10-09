@@ -36,7 +36,7 @@ if (isset($_GET['id'])) {
     header("Location: categories.php");
 }
 
-include('index.html');
+include('home.html');
 ?>
 
 <h1>Edit Category</h1>

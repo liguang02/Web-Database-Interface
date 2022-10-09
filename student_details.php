@@ -17,7 +17,7 @@ if (isset($_GET['id'])) {
     header("Location: students.php");
 }
 
-require_once('index.html');
+require_once('home.html');
 ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
 <h1 class="display-3 text-center"><ins>Student Details</ins></h1>

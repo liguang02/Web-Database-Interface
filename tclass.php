@@ -4,7 +4,7 @@ require_once('common.php');
 
 $tailored_class = $dbh->prepare("SELECT * FROM `tailored_class`");
 
-require_once('index.html');
+require_once('home.html');
 ?>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" >
 <br><hr>
