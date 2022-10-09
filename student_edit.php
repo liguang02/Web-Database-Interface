@@ -5,7 +5,7 @@ require_once('common.php');
 // Redirect back to the list page, as id is not provided in the request
 if (!isset($_GET['id'])) {
     header("Location: students.php");
-    die();
+    exit();
 }
 ?>
 <!doctype html>
@@ -79,6 +79,7 @@ if (!isset($_GET['id'])) {
         $query = "SELECT * FROM `students` WHERE `id` = ?";
         $stmt = $dbh->prepare($query);
         if ($stmt->execute([$_GET['id']])) {
+            $enrolments = $dbh->prepare("SELECT * FROM `enrolment` WHERE `student_id` = ?");
             if ($stmt->rowCount() > 0) {
                 $record = $stmt->fetchObject(); ?>
                 <form method="post">
@@ -139,11 +140,37 @@ if (!isset($_GET['id'])) {
                                 <?php }
                             } ?>
                         </select>
-
                     </div>
                     </div>
                     <div class="row center">
-                        <input type="submit" value="Update"/>
+                        <input type="submit" value="Add Course / Update"/>
+                    </div>
+                    <div>
+                        <p>Courses Enrolled: </p>
+                        <?php if ($enrolments->execute([$record->id]) && $enrolments->rowCount() > 0) { ?>
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Course Name</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php while ($enrolment = $enrolments->fetchObject()) { ?>
+                                    <tr>
+                                        <td><?= $enrolment->id ?></td>
+                                        <?php
+                                        $course = $dbh->prepare("SELECT `name` FROM `course` WHERE `id`=?");
+                                        $course->execute([$enrolment->course_id]);
+                                        ?>
+                                        <td><?= $course->fetchObject()->name ?></td>
+                                    </tr>
+                                <?php } ?>
+                                </tbody>
+                            </table>
+                        <?php } else {?>
+                            <p>No courses enrolled!</p>
+                        <?php } ?>
                     </div>
                     <div class="row center">
                         <a href="students.php">Cancel and back to homepage</a>
@@ -153,7 +180,9 @@ if (!isset($_GET['id'])) {
                 header("Location: students.php");
             }
         } else {
-            die(friendlyError($stmt->errorInfo()[2]));
+            $dbh->rollback();  // In case of error, rollback everything
+            header("Location: student_edit.php?" . $_SERVER['QUERY_STRING'] . "&error=" . urlencode('The student cannot be updated. Please try again!'));
+            exit();
         }
     } ?>
 </div>
